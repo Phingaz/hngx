@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stage One</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(228, 230, 252, 0.404);
+        color: rgb(15, 0, 113);
+        text-align: left;
+        font-family: "Nunito", sans-serif;
+        min-height: 100svh;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 10px;
+        width: min(90vw, 500px);
+        background-color: rgb(206, 222, 255);
+        padding: 10px;
+        box-shadow: 0 0 5px 2px rgba(27, 8, 68, 0.208);
+        margin: 25px 0;
+      }
+
+      .wrapper {
+        padding: 10px;
+        width: 100%;
+        border-radius: 10px;
+        background-color: rgb(174, 201, 255);
+      }
+
+      .wrapper > h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: -1px;
+      }
+
+      .wrapper > img {
+        width: max(5rem, 9.5rem);
+        aspect-ratio: 1 / 1;
+        border-radius: 10px;
+      }
+
+      .wrapper > p {
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .wrapper > a {
+        text-decoration: none;
+        color: rgb(66, 36, 255);
+        font-weight: 800;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <h3>Slack Name:</h3>
+        <h1 data-testid="slackUserName">Prosper Pii</h1>
+      </div>
+      <div class="wrapper">
+        <h3>Slack Display Picture:</h3>
+        <img
+          src="https://ca.slack-edge.com/T05FFAA91JP-U05R9QK0G69-8062802f098f-512"
+          data-testid="slackDisplayImage"
+        />
+      </div>
+      <div class="wrapper">
+        <h3>Current day of the week:</h3>
+        <p id="day" data-testid="currentDayOfTheWeek">time</p>
+      </div>
+      <div class="wrapper">
+        <h3>Current UTC Time:</h3>
+        <p id="time" data-testid="currentUTCTime">
+          Thu, 07 Sep 2023 15:47:07 GMT
+        </p>
+      </div>
+      <div class="wrapper">
+        <h3>Track:</h3>
+        <p data-testid="myTrack">Frontend</p>
+      </div>
+      <div class="wrapper">
+        <h3>Github URL:</h3>
+        <a
+          href="https://github.com/Phingaz"
+          target="_blank"
+          data-testid="githubURL"
+          >Phingaz</a
+        >
+      </div>
+    </div>
+    <script>
+      const weekday = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+      const d = new Date();
+
+      const dayElement = document.getElementById("day");
+      dayElement.innerText = weekday[d.getDay()];
+
+      const timeElement = document.getElementById("time");
+
+      setInterval(() => {
+        const d = new Date();
+        timeElement.innerText = d.toUTCString();
+      }, 1000);
+    </script>
+  </body>
+</html>
