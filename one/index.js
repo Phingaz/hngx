@@ -8,12 +8,11 @@ const weekday = [
   "Saturday",
 ];
 
-const d = new Date();
+const day = new Date().getDay();
+const dayElement = document.querySelector('[ data-testid="currentDayOfTheWeek"]');
+dayElement.innerText = weekday[day];
 
-const dayElement = document.getElementById("day");
-dayElement.innerText = weekday[d.getDay()];
-
-const timeElement = document.getElementById("time");
+const timeElement = document.querySelector('[ data-testid="currentUTCTime"]');
 
 setInterval(() => {
   const d = Date.now();

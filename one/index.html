@@ -7,42 +7,23 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="wrapper">
-        <h3>Slack Name:</h3>
-        <h1 data-testid="slackUserName">Prosper Pii</h1>
-      </div>
-      <div class="wrapper">
-        <h3>Slack Display Picture:</h3>
-        <img
-          src="https://ca.slack-edge.com/T05FFAA91JP-U05R9QK0G69-8062802f098f-512"
-          data-testid="slackDisplayImage"
-        />
-      </div>
-      <div class="wrapper">
-        <h3>Current day of the week:</h3>
-        <p id="day" data-testid="currentDayOfTheWeek">time</p>
-      </div>
-      <div class="wrapper">
-        <h3>Current UTC Time:</h3>
-        <p id="time" data-testid="currentUTCTime">
-          Thu, 07 Sep 2023 15:47:07 GMT
-        </p>
-      </div>
-      <div class="wrapper">
-        <h3>Track:</h3>
-        <p data-testid="myTrack">Frontend</p>
-      </div>
-      <div class="wrapper">
-        <h3>Github URL:</h3>
-        <a
-          href="https://github.com/Phingaz/hngx/tree/main/one"
-          target="_blank"
-          data-testid="githubURL"
-          >Phingaz</a
-        >
-      </div>
-    </div>
+    <main>
+      <img
+        src="https://ca.slack-edge.com/T05FFAA91JP-U05R9QK0G69-8062802f098f-512"
+        alt="Prosper Pii"
+        data-testid="slackDisplayImage"
+      />
+      <h1 data-testid="slackUserName">Prosper Pii</h1>
+      <p data-testid="currentDayOfTheWeek">time</p>
+      <p data-testid="currentUTCTime">1694179752468</p>
+      <p data-testid="myTrack">Frontend</p>
+      <a
+        href="https://github.com/Phingaz/hngx/tree/main/one"
+        target="_blank"
+        data-testid="githubURL"
+        >Github URL</a
+      >
+    </main>
     <script src="./index.js"></script>
   </body>
 </html>
