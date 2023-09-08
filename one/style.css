@@ -29,25 +29,27 @@ main {
   box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.404);
 }
 
-h1 {
+[data-testid="slackUserName"] {
   font-size: 1.5rem;
   font-weight: 800;
   margin-bottom: 1rem;
 }
 
-img {
+[data-testid="slackDisplayImage"] {
   width: 10rem;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
 }
 
-p {
+[data-testid="currentDayOfTheWeek"], 
+[data-testid="currentUTCTime"], 
+[data-testid="myTrack"] {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
-a {
+[data-testid="githubURL"] {
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 10px;
