@@ -20,4 +20,4 @@ const timeElement = document.querySelector('[ data-testid="currentUTCTime"]');
 setInterval(() => {
   const d = Date.now();
   timeElement.innerText = d;
-}, 100);
+}, 1);
