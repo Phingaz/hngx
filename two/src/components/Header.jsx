@@ -2,12 +2,14 @@ import styled from "./Header.module.css";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import tv from "./asset/tv.png";
-
+import Main from "../Context";
+import { useContext } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 
 export const Header = () => {
+  const { input, setInput } = useContext(Main)
+  
   const [sh, setSh] = useState(false);
-  const [input, setInput] = useState("");
 
   const shoNa = () => {
     setSh((p) => !p);
@@ -51,7 +53,7 @@ export const Header = () => {
       >
         <div className="md:w-6/12 w-full md:mx-auto h-[50px] rounded-lg bg-transparent border-2 border-slate-300 md:px-5 px-2 flex justify-between items-center">
           <input
-            className="w-full h-full bg-transparent outline-none text-white font-normal"
+            className={`w-full h-full bg-transparent outline-none font-normal ${input.trim().length !== 0 && `text-slate-900`} ${input.trim().length === 0 && `text-slate-300`} placeholder-slate-300 placeholder-opacity-50 font-normal`}
             type="text"
             value={input}
             onChange={handleChange}
@@ -61,7 +63,7 @@ export const Header = () => {
         </div>
 
         <NavLink
-          to="/movies"
+          to="/"
           className={({ isActive, isPending }) =>
             isPending
               ? ""

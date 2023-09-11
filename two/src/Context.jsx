@@ -5,6 +5,7 @@ const Main = createContext();
 
 export function MainCtxProvider(props) {
   const [movie, setMovie] = useState([]);
+  const [input, setInput] = useState("");
 
   const setMovieDetails = (data) => {
     setMovie(data);
@@ -12,6 +13,8 @@ export function MainCtxProvider(props) {
 
   const contextValue = {
     movie,
+    input,
+    setInput,
     setMovieDetails,
   };
 
