@@ -7,11 +7,18 @@ import SearchIcon from "@mui/icons-material/Search";
 
 export const Header = () => {
   const [sh, setSh] = useState(false);
+  const [input, setInput] = useState("");
 
   const shoNa = () => {
     setSh((p) => !p);
   };
 
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  }
+
+  
+  
   return (
     <header className={styled.header}>
       <NavLink
@@ -45,6 +52,9 @@ export const Header = () => {
         <div className="md:w-6/12 w-full md:mx-auto h-[50px] rounded-lg bg-transparent border-2 border-slate-300 md:px-5 px-2 flex justify-between items-center">
           <input
             className="w-full h-full bg-transparent outline-none text-white font-normal"
+            type="text"
+            value={input}
+            onChange={handleChange}
             placeholder="What do you want to search for?"
           />
           <SearchIcon />

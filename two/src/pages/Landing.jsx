@@ -16,8 +16,6 @@ export const Landing = () => {
       ? data.results[Math.floor(Math.random() * data.results.length)]
       : null;
 
-  console.log(hero);
-
   const bgUrl = hero
     ? `https://image.tmdb.org/t/p/original/${hero?.backdrop_path}`
     : "";
