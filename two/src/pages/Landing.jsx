@@ -35,7 +35,7 @@ export const Landing = () => {
         </div>
       </div>
       <div className="w-[min(95%,1300px)] mx-auto">
-        <div className="flex flex-col sm:grid sm:grid-cols-3 md:grid-cols-4 gap-[1rem]">
+        <div className="grid grid-cols-2 sm:grid sm:grid-cols-3 md:grid-cols-4 gap-[1rem]">
           <Card />
           <Card />
           <Card />
