@@ -9,6 +9,8 @@ export const useFetch = (url, method) => {
   });
 
   useEffect(() => {
+    const KEY = process.env.REACT_APP_KEY;
+
     const fetchData = async () => {
       setIsPending(true);
       try {
@@ -16,8 +18,7 @@ export const useFetch = (url, method) => {
           method: method,
           headers: {
             accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NjZkNWJiOTdlNjA4OTc5MzRjZmRjZmM2MWRhNzNhZCIsInN1YiI6IjY0ZmYyYzExZmZjOWRlMGVlMTc2NTFiMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.F5IPPnCZcsqxVdAgYMUImPwVeKIyim0_TjVFN9EFj2M",
+            Authorization: `Bearer ${KEY}`,
           },
         });
         if (!response.ok) throw new Error(response.ok);
