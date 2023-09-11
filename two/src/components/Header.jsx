@@ -1,7 +1,7 @@
 import styled from "./Header.module.css";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import tv from "./images/tv.png";
+import tv from "./asset/tv.png";
 
 import SearchIcon from "@mui/icons-material/Search";
 

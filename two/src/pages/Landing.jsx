@@ -4,7 +4,7 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 export const Landing = () => {
   return (
     <>
-      <div className="relative bg-john h-[75vh] w-screen bg-no-repeat bg-cover bg-center">
+      <div className="relative h-[75vh] bg-[url(./components/asset/Poster.png)] w-screen bg-no-repeat bg-cover bg-center">
         <div className="w-[min(95%,1300px)] mx-auto h-[calc(75vh-80px)] ">
           <Header />
           <main className="flex flex-col justify-center h-full w-full md:w-6/12 text-white font-dm">
