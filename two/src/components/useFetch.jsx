@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import.meta.env.KEY;
 
 export const useFetch = (url, method) => {
   const [data, setData] = useState({});
@@ -9,8 +10,6 @@ export const useFetch = (url, method) => {
   });
 
   useEffect(() => {
-    const KEY = process.env.REACT_APP_KEY;
-
     const fetchData = async () => {
       setIsPending(true);
       try {
@@ -18,7 +17,7 @@ export const useFetch = (url, method) => {
           method: method,
           headers: {
             accept: "application/json",
-            Authorization: `Bearer ${KEY}`,
+            Authorization: `Bearer ${import.meta.env.VITE_KEY}`,
           },
         });
         if (!response.ok) throw new Error(response.ok);
