@@ -1,0 +1,110 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  color: white;
+}
+
+.nav_btn {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100svh;
+    min-width: 0;
+    padding: 100px 20px 0 20px;
+    gap: 2rem;
+    overflow-x: hidden;
+    z-index: 999;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.149);
+  }
+
+  .nav_btn {
+    position: fixed;
+    right: 2rem;
+    width: 40px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .ham {
+    display: block;
+    width: 90%;
+    height: 5px;
+    background-color: #eee;
+    border-radius: 5px;
+    transition: 0.1s ease-in;
+  }
+
+  .nav_btn.openb .ham:nth-child(1) {
+    transform: translateY(11.8px) rotate(45deg);
+  }
+
+  .nav_btn.openb .ham:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav_btn.openb .ham:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+  }
+
+  .open {
+    display: flex;
+    opacity: 1;
+    animation: slideDown 0.5s;
+    transition: all 0.1s ease-in;
+    width: 80%;
+  }
+
+  .closed {
+    animation: slideUp 0.5s;
+    animation-fill-mode: forwards;
+    transition: all 0.1s ease-in-out;
+    width: 0;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      width: 0;
+    }
+
+    to {
+      opacity: 1;
+      width: 80%;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      display: flex;
+      opacity: 1;
+      width: 80%;
+    }
+
+    to {
+      display: none;
+      opacity: 0;
+      width: 0;
+    }
+  }
+}
