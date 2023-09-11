@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from "tailwindcss/defaultTheme";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -10,6 +12,10 @@ export default {
     fontFamily: {
       dm: ["DM Sans", "sans-serif"],
     },
+    screens: {
+      'small': '718px',
+      ...defaultTheme.screens,
+    }
   },
   plugins: [],
 };

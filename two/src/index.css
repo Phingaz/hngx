@@ -8,9 +8,25 @@
   .k {
     @apply border-2 border-green-500;
   }
+  .s {
+    scale: 1.01;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.239);
+  }
+
+  .b {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.087);
+  }
+
+  .t {
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  }
 }
 
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
 }

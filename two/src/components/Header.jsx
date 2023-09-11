@@ -20,8 +20,8 @@ export const Header = () => {
           isPending
             ? ""
             : isActive
-            ? "flex justify-center items-center gap-4"
-            : "flex justify-center items-center gap-4"
+            ? "flex justify-center items-center gap-4 left-2"
+            : "flex justify-center items-center gap-4 left-2"
         }
       >
         <img src={tv} width={"40px"} />
@@ -38,9 +38,9 @@ export const Header = () => {
       </button>
 
       <nav
-        className={`flex-1 md:flex md:justify-center md:items-center ${styled.nav} ${
-          sh ? styled.open : styled.close
-        }`}
+        className={`flex-1 md:flex md:justify-center md:items-center ${
+          styled.nav
+        } ${sh ? styled.open : styled.close}`}
       >
         <div className="md:w-6/12 w-full md:mx-auto h-[50px] rounded-lg bg-transparent border-2 border-slate-300 md:px-5 px-2 flex justify-between items-center">
           <input
@@ -51,7 +51,7 @@ export const Header = () => {
         </div>
 
         <NavLink
-          to="/"
+          to="/movies"
           className={({ isActive, isPending }) =>
             isPending
               ? ""
