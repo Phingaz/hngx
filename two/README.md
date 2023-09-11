@@ -1,12 +1,18 @@
 # Getting Started
 Follow these steps to set up and run the project locally:
 
+
 Clone the repository:
+
 git clone https://github.com/Phingaz/hngx.git
 cd hngx/two
 
+
 Install dependencies:
+
 npm install
+
+
 Run the development server:
 
 npm run dev
