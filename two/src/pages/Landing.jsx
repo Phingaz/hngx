@@ -1,3 +1,4 @@
+import { Card } from "../components/Card";
 import { Header } from "../components/Header";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 
@@ -31,6 +32,16 @@ export const Landing = () => {
               <PlayCircleIcon /> Watch Trailer
             </button>
           </main>
+        </div>
+      </div>
+      <div className="w-[min(95%,1300px)] mx-auto">
+        <div className="flex flex-col sm:grid sm:grid-cols-3 md:grid-cols-4 gap-[1rem]">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
       </div>
     </>
