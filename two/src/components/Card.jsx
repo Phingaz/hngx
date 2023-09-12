@@ -45,9 +45,15 @@ export const Card = ({ details, favorites }) => {
     >
       <div className="relative w-full">
         <div className="absolute top-0 left-0 w-full min-h-[45px] flex justify-end items-center p-2 z-[10]">
-          <p className={`bg-white bg-opacity-30 text-gray-900 rounded-full w-[30px] h-[30px] flex justify-center items-center cursor-pointer hover:opacity-100 hover:l transition-all`}>
+          <p
+            className={`bg-white bg-opacity-30 text-gray-900 rounded-full w-[30px] h-[30px] flex justify-center items-center cursor-pointer hover:opacity-100 hover:l transition-all`}
+          >
             <FavoriteIcon
-              className={`text-white w-full h-full opacity-60 p-1 hover:opacity-100 z-[11] ${favorites && "opacity-100 text-rose-400 "}`}
+              className={`w-full h-full p-1 hover:opacity-100 z-[11] ${
+                favorites
+                  ? "opacity-100 text-red-400 "
+                  : "text-white opacity-60"
+              }`}
               onClick={(e) => addToFavorites(e, details)}
             />
           </p>

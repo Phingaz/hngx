@@ -12,19 +12,26 @@ export function MainCtxProvider(props) {
     setMovie(data);
   };
 
-  const handleFavorites = (data) => {
-    favorites.length > 0
-      ? favorites.map((el) => {
-          console.log(el, data.id);
-          if (favorites.includes(data.id)) {
-            console.log(el);
-            setFavorites((p) => p.filter((item) => item !== data.id));
-          } else {
-            setFavorites((p) => [...p, data.id]);
-          }
-        })
-      : setFavorites((p) => [...p, data.id]);
+  const handleFavorites = ( data) => {
+    if (favorites.length > 0) {
+      favorites.map((el) => {
+        console.log(el, data.id);
+        if (favorites.includes(data.id)) {
+          console.log('one');
+          setFavorites((p) => p.filter((item) => item !== data.id));
+        } else {
+          console.log('two');
+          setFavorites((p) => [...p, data.id]);
+        }
+      });
+      return;
+    } else {
+      console.log("here")
+      setFavorites((p) => [...p, data.id]);
+    }
   };
+
+  console.log(favorites);
 
   const contextValue = {
     movie,
