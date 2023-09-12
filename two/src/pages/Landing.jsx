@@ -24,7 +24,7 @@ export const Landing = () => {
       setNumb((p) => {
         return numb >= 9 ? 0 : p + 1;
       });
-    }, 900000000);
+    }, 9000);
     return () => clearInterval(interval);
   }, [numb, data, movies?.length]);
 

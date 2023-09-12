@@ -3,11 +3,13 @@ import star from "../components/asset/Star.png";
 import { MovieInfo } from "./MovieInfo";
 
 export const Movie = ({ movieInfo }) => {
-
-  const year = movieInfo?.release_date?.split("-")[0];
+  const year = Date.UTC(parseInt(movieInfo?.release_date)); /* ?.split("-")[0]*/
   const runtimeHour = Math.floor(movieInfo?.runtime / 60);
   const runtimeMin = movieInfo?.runtime % 60;
-  
+
+  const d = new Date(1672531200000).toLocaleDateString();
+  console.log(d,movieInfo?.release_date);
+
   return (
     <div className="flex-1">
       <div className="flex flex-col items-start sm:flex-row sm:justify-between sm:items-center mb-4 md:mb-10">
@@ -25,7 +27,9 @@ export const Movie = ({ movieInfo }) => {
         </div>
         <div className="flex justify-center items-center gap-1">
           <img src={star} className="object-contain object-center" />
-          <p className="text-gray-300">{movieInfo?.vote_average?.toFixed(1)} </p>
+          <p className="text-gray-300">
+            {movieInfo?.vote_average?.toFixed(1)}{" "}
+          </p>
           <p>| {movieInfo?.vote_count?.toString().slice(0, 3)}k</p>
         </div>
       </div>

@@ -51,7 +51,7 @@ export const Card = ({ details, favorites }) => {
             <FavoriteIcon
               className={`w-full h-full p-1 hover:opacity-100 z-[11] ${
                 favorites
-                  ? "opacity-100 text-red-400 "
+                  ? "opacity-100 text-rose-600 "
                   : "text-white opacity-60"
               }`}
               onClick={(e) => addToFavorites(e, details)}

@@ -31,8 +31,8 @@ export const Nav = () => {
           isPending
             ? ""
             : isActive
-            ? "flex justify-center items-center gap-2"
-            : "flex justify-center items-center gap-2"
+            ? `flex justify-center items-center gap-2 ${styled.home}`
+            : `flex justify-center items-center gap-2 ${styled.home}`
         }
       >
         <img src={tv} width={"40px"} />

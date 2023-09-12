@@ -3,6 +3,21 @@
 }
 
 @media (max-width: 716px) {
+
+  .home {
+    position: fixed;
+    top: 0.75rem;
+    right: 0.75rem;
+    cursor: pointer;
+    background-color: transparent;
+    backdrop-filter: blur(15px);
+    border: none;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
   .nav_second{
     display: none;
     flex-direction: column;
