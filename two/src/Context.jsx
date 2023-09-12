@@ -7,31 +7,23 @@ export function MainCtxProvider(props) {
   const [movie, setMovie] = useState([]);
   const [input, setInput] = useState("");
   const [favorites, setFavorites] = useState([]);
+  const [favoritesList, setFavoritesList] = useState([]);
 
   const setMovieDetails = (data) => {
     setMovie(data);
   };
 
-  const handleFavorites = ( data) => {
-    if (favorites.length > 0) {
-      favorites.map((el) => {
-        console.log(el, data.id);
-        if (favorites.includes(data.id)) {
-          console.log('one');
-          setFavorites((p) => p.filter((item) => item !== data.id));
-        } else {
-          console.log('two');
-          setFavorites((p) => [...p, data.id]);
-        }
-      });
-      return;
-    } else {
-      console.log("here")
-      setFavorites((p) => [...p, data.id]);
-    }
+  const handleFavorites = (data) => {
+    favorites.length > 0
+      ? favorites.includes(data.id)
+        ? setFavorites((p) => p.filter((item) => item !== data.id))
+        : setFavorites((p) => [...p, data.id])
+      : setFavorites((p) => [...p, data.id]);
+    setFavoritesList((p) => [...p, data]);
   };
 
   console.log(favorites);
+  console.log(favoritesList)
 
   const contextValue = {
     movie,
