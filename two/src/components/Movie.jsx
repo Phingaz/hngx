@@ -7,9 +7,6 @@ export const Movie = ({ movieInfo }) => {
   const runtimeHour = Math.floor(movieInfo?.runtime / 60);
   const runtimeMin = movieInfo?.runtime % 60;
 
-  const d = new Date(1672531200000).toLocaleDateString();
-  console.log(d,movieInfo?.release_date);
-
   return (
     <div className="flex-1">
       <div className="flex flex-col items-start sm:flex-row sm:justify-between sm:items-center mb-4 md:mb-10">

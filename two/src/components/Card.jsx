@@ -62,6 +62,7 @@ export const Card = ({ details, favorites }) => {
           src={`${baseImgUrl}${details.poster_path}`}
           className="w-full object-contain object-center hover:rounded-lg cursor-pointer"
           data-testid="movie-poster"
+          alt="poster-img"
         />
       </div>
       <p className="text-gray-400 font-semibold lg:text-base text-sm">

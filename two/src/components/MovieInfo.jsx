@@ -6,9 +6,7 @@ export const MovieInfo = ({ movieInfo }) => {
     <div className="flex flex-col sm:flex-row gap-5 justify-between mb-5 sm:mb-0">
       <div className="flex-[7] flex flex-col gap-4 text-sm justify-between">
         <div className="flex gap-4 flex-col">
-          <p data-testid="movie-overview">
-            {movieInfo.overview}
-          </p>
+          <p data-testid="movie-overview">{movieInfo.overview}</p>
           <p>
             Director: <span className="text-rose-700">Joesp Kosinki</span>
           </p>

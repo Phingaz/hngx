@@ -24,7 +24,7 @@ export const useFetch = (url, method) => {
         const json = await response.json();
         setIsPending(false);
         setData(json);
-        setError(null);
+        setError({ status: false, message: "" });
       } catch (error) {
         setError({
           message: `${error} Could not Fetch Data `,

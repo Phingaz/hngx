@@ -3,7 +3,6 @@
 }
 
 @media (max-width: 716px) {
-
   .home {
     position: fixed;
     top: 0.75rem;
@@ -18,7 +17,7 @@
     align-items: center;
   }
 
-  .nav_second{
+  .nav_second {
     display: none;
     flex-direction: column;
     position: fixed;
@@ -40,8 +39,7 @@
     width: 40px;
     aspect-ratio: 1/1;
     cursor: pointer;
-    background-color: transparent;
-    backdrop-filter: blur(15px);
+    background-color: rgb(193, 3, 73);
     border: none;
     z-index: 10000;
     display: flex;
@@ -50,11 +48,22 @@
     align-items: center;
   }
 
+  .back {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.55rem;
+    cursor: pointer;
+    z-index: 10000;
+    scale: 2;
+    color: white;
+    background-color: rgb(193, 3, 73);
+  }
+
   .ham {
     display: block;
     width: 90%;
     height: 5px;
-    background-color: rgb(193, 3, 73);
+    background-color: white;
     border-radius: 5px;
     transition: 0.1s ease-in;
   }

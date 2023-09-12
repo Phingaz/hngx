@@ -6,6 +6,8 @@ import useFetch from "../components/useFetch";
 import { Search } from "../components/Search";
 import Main from "../Context";
 import { useContext, useState, useEffect } from "react";
+import { Loader } from "../components/Loader";
+import { ErrorPage } from "../components/ErrorPage";
 
 export const Landing = () => {
   const { data, isPending, error } = useFetch(
@@ -40,42 +42,46 @@ export const Landing = () => {
 
   return (
     <>
-      <div
-        style={{ "--image-url": `url(${bgUrl})` }}
-        className={`relative min-h-[500px] bg-[image:var(--image-url)] bg-gray-500 w-screen bg-no-repeat bg-cover bg-top `}
-      >
-        {input.trim().length !== 0 && <Search />}
+      {isPending ? (
+        <Loader />
+      ) : !error.status ? (
+        <>
+          <div
+            style={{ "--image-url": `url(${bgUrl})` }}
+            className={`relative min-h-[500px] bg-[image:var(--image-url)] bg-gray-500 w-screen bg-no-repeat bg-cover bg-top `}
+          >
+            {input.trim().length !== 0 && <Search />}
 
-        {input.trim().length === 0 && (
-          <ul className="absolute top-1/2 left-[90%] transform -translate-x-1/2 -translate-y-1/2 h-[35%] hidden md:flex flex-col gap-3 z-10 list-none cursor-pointer overflow-y-scroll px-5 u">
-            {movies?.map((item, index) => {
-              return (
-                <li
-                  key={index}
-                  onClick={() => switchMovie(index)}
-                  className={` text-xl font-semibold transition-all duration-200 t hover:scale-[1.2] hover:text-red-300 ${
-                    numb === index ? "l text-rose-600" : "text-white"
-                  }`}
-                >
-                  - {index + 1}
-                </li>
-              );
-            })}
-          </ul>
-        )}
+            {input.trim().length === 0 && (
+              <ul className="absolute top-1/2 left-[90%] transform -translate-x-1/2 -translate-y-1/2 h-[35%] hidden md:flex flex-col gap-3 z-10 list-none cursor-pointer overflow-y-scroll px-5 u">
+                {movies?.map((item, index) => {
+                  return (
+                    <li
+                      key={index}
+                      onClick={() => switchMovie(index)}
+                      className={` text-xl font-semibold transition-all duration-200 t hover:scale-[1.2] hover:text-red-300 ${
+                        numb === index ? "l text-rose-600" : "text-white"
+                      }`}
+                    >
+                      - {index + 1}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
 
-        <div className="w-[min(90%,1300px)] mx-auto h-[calc(75vh+80px)] ">
-          <Header />
-          {!error?.status && input.trim().length === 0 && (
-            <MainPage data={hero} error={error} isPending={isPending} />
-          )}
-        </div>
-      </div>
+            <div className="w-[min(90%,1300px)] mx-auto h-[calc(75vh+80px)] ">
+              <Header />
+              {input.trim().length === 0 && <MainPage data={hero} />}
+            </div>
+          </div>
 
-      {!isPending && !error?.status && input.trim().length === 0 && (
-        <Features data={movies} error={error} isPending={isPending} />
+          {input.trim().length === 0 && <Features data={movies} />}
+          <Footer />
+        </>
+      ) : (
+        <ErrorPage />
       )}
-      <Footer />
     </>
   );
 };

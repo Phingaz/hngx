@@ -3,6 +3,8 @@ import { Nav } from "../components/Nav";
 import { useParams } from "react-router-dom";
 import useFetch from "../components/useFetch";
 import { Video } from "../components/Video";
+import { Loader } from "../components/Loader";
+import { ErrorPage } from "../components/ErrorPage";
 
 export const Movies = () => {
   const { id } = useParams();
@@ -14,7 +16,7 @@ export const Movies = () => {
   return (
     <>
       {isPending ? (
-        <div>Loading...</div>
+        <Loader />
       ) : (
         <div className="flex h-[100svh] bg-white">
           <Nav />
@@ -22,13 +24,7 @@ export const Movies = () => {
             <div className="flex-1 min-h-[50vh] mb-5">
               <Video id={id} />
             </div>
-            {data ? (
-              <Movie movieInfo={data} />
-            ) : (
-              <div className="absolute k">
-                <p>Something went wrong, please try again later</p>
-              </div>
-            )}
+            {data ? <Movie movieInfo={data} /> : <ErrorPage />}
           </div>
         </div>
       )}

@@ -7,8 +7,8 @@ import { useContext } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 
 export const Header = () => {
-  const { input, setInput } = useContext(Main)
-  
+  const { input, setInput } = useContext(Main);
+
   const [sh, setSh] = useState(false);
 
   const shoNa = () => {
@@ -17,10 +17,8 @@ export const Header = () => {
 
   const handleChange = (e) => {
     setInput(e.target.value);
-  }
+  };
 
-  
-  
   return (
     <header className={styled.header}>
       <NavLink
@@ -53,7 +51,11 @@ export const Header = () => {
       >
         <div className="md:w-6/12 w-full md:mx-auto h-[50px] rounded-lg bg-transparent border-2 border-slate-300 md:px-5 px-2 flex justify-between items-center">
           <input
-            className={`w-full h-full bg-transparent outline-none font-normal ${input.trim().length !== 0 && `text-slate-900`} ${input.trim().length === 0 && `text-slate-300`} placeholder-slate-300 placeholder-opacity-50 font-normal`}
+            className={`w-full h-full bg-transparent outline-none font-normal ${
+              input.trim().length !== 0 && `text-slate-900`
+            } ${
+              input.trim().length === 0 && `text-slate-300`
+            } placeholder-slate-300 placeholder-opacity-50 font-normal`}
             type="text"
             value={input}
             onChange={handleChange}

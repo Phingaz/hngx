@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import useFetch from "./useFetch";
+import { Loader } from "./Loader";
 
 export const Video = ({ id }) => {
   const { data, isPending, error } = useFetch(
@@ -7,13 +8,12 @@ export const Video = ({ id }) => {
   );
 
   const movieId = !isPending && data?.results && data.results[0]?.key;
-
   return (
     <>
       {isPending ? (
-        <div>Loading...</div>
-      ) : error ? (
-        <div>Something went wrong, please try again later..</div>
+        <Loader />
+      ) : error.status ? (
+        <p className="text-black text-center">Something went wrong</p>
       ) : (
         <iframe
           width="100%"
