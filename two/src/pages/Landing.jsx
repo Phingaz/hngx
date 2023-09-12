@@ -13,14 +13,16 @@ export const Landing = () => {
     "GET"
   );
 
+  const [numb, setNumb] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setNumb((p) => p + 1);
+      setNumb((p) => {
+        return numb === 19 ? 0 : p + 1;
+      });
     }, 9000);
     return () => clearInterval(interval);
-  }, []);
-
-  const [numb, setNumb] = useState(0);
+  }, [numb]);
 
   const { input } = useContext(Main);
 
@@ -48,8 +50,8 @@ export const Landing = () => {
               <li
                 key={index}
                 onClick={() => switchMovie(index)}
-                className={`text-white text-xl font-semibold transition-all duration-200 t hover:scale-[1.2] hover:text-red-300 ${
-                  numb === index && "l text-rose-600"
+                className={` text-xl font-semibold transition-all duration-200 t hover:scale-[1.2] hover:text-red-300 ${
+                  numb === index ? "l text-rose-600" : "text-white"
                 }`}
               >
                 - {index + 1}
