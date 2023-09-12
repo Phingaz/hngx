@@ -13,9 +13,19 @@ export function MainCtxProvider(props) {
   };
 
   const handleFavorites = (data) => {
-    setFavorites(p => [...p, data.id,])
-  }
-  
+    favorites.length > 0
+      ? favorites.map((el) => {
+          console.log(el, data.id);
+          if (favorites.includes(data.id)) {
+            console.log(el);
+            setFavorites((p) => p.filter((item) => item !== data.id));
+          } else {
+            setFavorites((p) => [...p, data.id]);
+          }
+        })
+      : setFavorites((p) => [...p, data.id]);
+  };
+
   const contextValue = {
     movie,
     input,

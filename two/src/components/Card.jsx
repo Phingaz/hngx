@@ -47,7 +47,7 @@ export const Card = ({ details, favorites }) => {
         <div className="absolute top-0 left-0 w-full min-h-[45px] flex justify-end items-center p-2 z-[10]">
           <p className={`bg-white bg-opacity-30 text-gray-900 rounded-full w-[30px] h-[30px] flex justify-center items-center cursor-pointer hover:opacity-100 hover:l transition-all`}>
             <FavoriteIcon
-              className={`text-white w-full h-full opacity-60 p-1 hover:opacity-100 z-[11] ${favorites && "opacity-100 text-red-400 "}`}
+              className={`text-white w-full h-full opacity-60 p-1 hover:opacity-100 z-[11] ${favorites && "opacity-100 text-rose-400 "}`}
               onClick={(e) => addToFavorites(e, details)}
             />
           </p>
@@ -58,11 +58,11 @@ export const Card = ({ details, favorites }) => {
           data-testid="movie-poster"
         />
       </div>
-      <p className="text-gray-400 font-semibold md:text-base text-sm">
+      <p className="text-gray-400 font-semibold lg:text-base text-sm">
         USA, <span data-testid="movie-release-date">{year}</span>
       </p>
       <h2
-        className="text-gray-900 font-semibold md:text-xl tracking-tight capitalize"
+        className="text-gray-900 font-semibold md:text-lg lg:text-xl tracking-tight capitalize"
         data-testid="movie-title"
       >
         {details.title}
@@ -70,14 +70,14 @@ export const Card = ({ details, favorites }) => {
       <div className="flex justify-between gap-4 text-gray-900">
         <div className="flex items-center justify-center gap-1">
           <img src={imdb} className="object-contain" />
-          <p className="md:text-base text-xs font-semibold">
+          <p className="lg:text-base md:text-sm text-xs font-semibold">
             {details.popularity > 100 ? 100 : Math.floor(details.popularity)}
             /100
           </p>
         </div>
         <div className="flex items-center justify-center gap-1">
           <img src={tomato} className="object-contain" />
-          <p className="md:text-base text-xs font-semibold">
+          <p className="lg:text-base md:text-sm text-xs font-semibold">
             {Math.floor(details.vote_average * 10)}%
           </p>
         </div>
@@ -86,7 +86,7 @@ export const Card = ({ details, favorites }) => {
         {genre.map((el, i) => (
           <p
             key={el}
-            className="font-semibold text-gray-400 md:text-base text-xs"
+            className="font-semibold text-gray-400 md:text-sm lg:text-base text-xs"
           >
             {el}
             {i + 1 === genre.length ? "" : ","}
