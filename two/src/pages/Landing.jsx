@@ -5,7 +5,7 @@ import { MainPage } from "../components/MainPage";
 import useFetch from "../components/useFetch";
 import { Search } from "../components/Search";
 import Main from "../Context";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 
 export const Landing = () => {
   const { data, isPending, error } = useFetch(
@@ -13,30 +13,51 @@ export const Landing = () => {
     "GET"
   );
 
+  const myRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNumb((p) => p + 1);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
   const [numb, setNumb] = useState(0);
 
   const { input } = useContext(Main);
 
-  const hero =
-    !isPending && data?.results
-      ? data.results[Math.floor(Math.random() * data.results.length)]
-      : null;
+  const hero = !isPending && data?.results ? data.results[numb] : null;
 
   const bgUrl = hero
     ? `https://image.tmdb.org/t/p/original/${hero?.backdrop_path}`
     : "";
 
+  const switchMovie = (item) => {
+    setNumb(item);
+  };
+
   return (
     <>
       <div
         style={{ "--image-url": `url(${bgUrl})` }}
-        className={`relative h-[75vh] bg-[image:var(--image-url)] bg-gray-500 w-screen bg-no-repeat bg-cover bg-center`}
+        className={`relative h-[75vh] bg-[image:var(--image-url)] bg-gray-500 w-screen bg-no-repeat bg-cover bg-center `}
       >
         {input.trim().length !== 0 && <Search />}
 
-        <ul className="absolute top-1/2 left-[90%] transform -translate-x-1/2 -translate-y-1/2 min-h-[20%] w-[5%] hidden  flex-col overflow-scroll z-10 list-none k">
+        <ul className="absolute top-1/2 left-[90%] transform -translate-x-1/2 -translate-y-1/2 h-[37%] w-[10%] hidden md:flex flex-col gap-3 z-10 list-none cursor-pointer overflow-y-scroll pl-5 u">
           {data?.results?.map((item, index) => {
-            return <li key={index} className="text-white t">- {index }</li>;
+            return (
+              <li
+                key={index}
+                ref={myRef}
+                onClick={() => switchMovie(index)}
+                className={`text-white text-xl font-semibold transition-all duration-200 t hover:scale-[1.2] hover:text-red-300 ${
+                  numb === index && "l text-red-600"
+                }`}
+              >
+                - {index + 1}
+              </li>
+            );
           })}
         </ul>
 

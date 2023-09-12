@@ -13,12 +13,32 @@
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.239);
   }
 
+  .l {
+    scale: 1.4;
+    color: red;
+  }
+
+  .u::-webkit-scrollbar {
+    display: none;
+}
+
   .b {
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.087);
   }
 
   .t {
     text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  }
+
+  .sh {
+    border: 1px SOLID RED;
+    background: rgb(14, 14, 14);
+    background: linear-gradient(
+      4deg,
+      rgba(14, 14, 14, 1) 0%,
+      rgba(105, 105, 99, 1) 29%,
+      rgba(185, 185, 174, 1) 68%
+    );
   }
 }
 
