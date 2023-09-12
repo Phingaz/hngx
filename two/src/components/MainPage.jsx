@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 export const MainPage = ({ data, error, isPending }) => {
   const navigate = useNavigate();
-  // console.log(data)
   const handleClick = () => {
     navigate("/movies/" + data.id);
   };
@@ -16,7 +15,7 @@ export const MainPage = ({ data, error, isPending }) => {
       {isPending ? (
         <div className="text-white text-2xl">Loading...</div>
       ) : error ? (
-        <div className="text-white text-2xl">{error.status}</div>
+        <div className="text-white text-2xl">{error?.status}</div>
       ) : (
         <main className="flex flex-col justify-center h-[100%] w-full md:w-6/12 text-white">
           <h1 className="md:text-5xl text-3xl font-bold leading-tighter mb-5 t">

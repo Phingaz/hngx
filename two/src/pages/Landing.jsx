@@ -9,24 +9,26 @@ import { useContext, useState, useEffect } from "react";
 
 export const Landing = () => {
   const { data, isPending, error } = useFetch(
-    `https://api.themoviedb.org/3/trending/movie/day?language=en-US`,
+    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
     "GET"
   );
 
-  const [numb, setNumb] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNumb((p) => {
-        return numb === 19 ? 0 : p + 1;
-      });
-    }, 9000);
-    return () => clearInterval(interval);
-  }, [numb]);
-
   const { input } = useContext(Main);
 
-  const hero = !isPending && data?.results ? data.results[numb] : null;
+  const [numb, setNumb] = useState(0);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    setMovies(data?.results?.slice(0, 10));
+    const interval = setInterval(() => {
+      setNumb((p) => {
+        return numb >= 9 ? 0 : p + 1;
+      });
+    }, 900000000);
+    return () => clearInterval(interval);
+  }, [numb, data, movies?.length]);
+
+  const hero = !isPending && movies ? movies[numb] : null;
 
   const bgUrl = hero
     ? `https://image.tmdb.org/t/p/original/${hero?.backdrop_path}`
@@ -36,29 +38,41 @@ export const Landing = () => {
     setNumb(item);
   };
 
+  // const f = movies?.map((el) => {
+  //   if (favorites.includes(el.id)) {
+  //     setMovies((p) => [...p, { isFavorite: true }]);
+  //   } else {
+  //     setMovies((p) => [...p, { isFavorite: false }]);
+  //   }
+  // });
+
+  // console.log(f)
+
   return (
     <>
       <div
         style={{ "--image-url": `url(${bgUrl})` }}
-        className={`relative h-[75vh] bg-[image:var(--image-url)] bg-gray-500 w-screen bg-no-repeat bg-cover bg-top `}
+        className={`relative min-h-[500px] bg-[image:var(--image-url)] bg-gray-500 w-screen bg-no-repeat bg-cover bg-top `}
       >
         {input.trim().length !== 0 && <Search />}
 
-        <ul className="absolute top-1/2 left-[90%] transform -translate-x-1/2 -translate-y-1/2 h-[37%] hidden md:flex flex-col gap-3 z-10 list-none cursor-pointer overflow-y-scroll px-5 u">
-          {data?.results?.map((item, index) => {
-            return (
-              <li
-                key={index}
-                onClick={() => switchMovie(index)}
-                className={` text-xl font-semibold transition-all duration-200 t hover:scale-[1.2] hover:text-red-300 ${
-                  numb === index ? "l text-rose-600" : "text-white"
-                }`}
-              >
-                - {index + 1}
-              </li>
-            );
-          })}
-        </ul>
+        {input.trim().length === 0 && (
+          <ul className="absolute top-1/2 left-[90%] transform -translate-x-1/2 -translate-y-1/2 h-[35%] hidden md:flex flex-col gap-3 z-10 list-none cursor-pointer overflow-y-scroll px-5 u">
+            {movies?.map((item, index) => {
+              return (
+                <li
+                  key={index}
+                  onClick={() => switchMovie(index)}
+                  className={` text-xl font-semibold transition-all duration-200 t hover:scale-[1.2] hover:text-red-300 ${
+                    numb === index ? "l text-rose-600" : "text-white"
+                  }`}
+                >
+                  - {index + 1}
+                </li>
+              );
+            })}
+          </ul>
+        )}
 
         <div className="w-[min(90%,1300px)] mx-auto h-[calc(75vh+80px)] ">
           <Header />
@@ -69,7 +83,7 @@ export const Landing = () => {
       </div>
 
       {!isPending && !error?.status && input.trim().length === 0 && (
-        <Features data={data} error={error} isPending={isPending} />
+        <Features data={movies} error={error} isPending={isPending} />
       )}
       <Footer />
     </>

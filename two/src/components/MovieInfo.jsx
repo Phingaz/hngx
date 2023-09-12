@@ -6,7 +6,7 @@ export const MovieInfo = ({ movieInfo }) => {
     <div className="flex flex-col sm:flex-row gap-5 justify-between mb-5 sm:mb-0">
       <div className="flex-[7] flex flex-col gap-4 text-sm justify-between">
         <div className="flex gap-4 flex-col">
-          <p className="" data-testid="movie-overview">
+          <p data-testid="movie-overview">
             {movieInfo.overview}
           </p>
           <p>
@@ -28,7 +28,7 @@ export const MovieInfo = ({ movieInfo }) => {
             id="countries"
             className="bg-gray-50 text-gray-900 text-sm block w-full p-2.5 rounded-r-lg outline-none ring-0 border-0 font-semibold"
           >
-            <option selected>Awards 9 nominations</option>
+            <option defaultValue={true}>Awards 9 nominations</option>
             <option value="US">United States</option>
             <option value="CA">Canada</option>
             <option value="FR">France</option>

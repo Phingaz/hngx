@@ -8,8 +8,8 @@ import Main from "../Context";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Card = ({ details }) => {
-  const { setMovieDetails } = useContext(Main);
+export const Card = ({ details, favorites }) => {
+  const { setMovieDetails, handleFavorites } = useContext(Main);
 
   const baseImgUrl = "https://image.tmdb.org/t/p/original/";
 
@@ -23,49 +23,47 @@ export const Card = ({ details }) => {
     return g;
   });
 
-  const year = details.release_date.split("-")[0];
+  const year = details.release_date; /*.split("-")[0]*/
 
   const navigate = useNavigate();
 
   const handlClick = () => {
     setMovieDetails(details);
-    navigate("/movies/"+details.id);
+    navigate("/movies/" + details.id);
   };
 
-  /* 
-  The Card component should display the movie title and release date.
-card - [data-testid: movie-card]
-movie poster - [data-testid: movie-poster]
-movie title - [data-testid: movie-title]
-movie release date - [data-testid: movie-release-date]
- */
+  const addToFavorites = (e, item) => {
+    e.stopPropagation();
+    handleFavorites(item);
+  };
 
   return (
     <div
       onClick={handlClick}
-      className="flex flex-col gap-1 border border-gray-100 b transition-all hover:s hover:rounded-lg cursor-pointer pb-1"
+      className="flex flex-col gap-1 border border-gray-100 b transition-all hover:s hover:rounded-lg pb-1 z-0"
       data-testid="movie-card"
     >
       <div className="relative w-full">
-        <div className="absolute top-0 left-0 w-full min-h-[45px] flex justify-end items-center md:p-5 p-2">
-          {/* <p className="bg-white bg-opacity-50 text-gray-900 font-semibold uppercase px-2 py-1 rounded-3xl text-[0.8rem] md:text-base">
-            Tv series
-          </p> */}
-          <p className="bg-white bg-opacity-30 text-gray-900 p-2 rounded-full w-[30px] h-[30px] flex justify-center items-center cursor-pointer">
-            <FavoriteIcon className="text-white w-full h-full opacity-60 p-1" />
+        <div className="absolute top-0 left-0 w-full min-h-[45px] flex justify-end items-center p-2 z-[10]">
+          <p className={`bg-white bg-opacity-30 text-gray-900 rounded-full w-[30px] h-[30px] flex justify-center items-center cursor-pointer hover:opacity-100 hover:l transition-all`}>
+            <FavoriteIcon
+              className={`text-white w-full h-full opacity-60 p-1 hover:opacity-100 z-[11] ${favorites && "opacity-100 text-red-400 "}`}
+              onClick={(e) => addToFavorites(e, details)}
+            />
           </p>
         </div>
         <img
           src={`${baseImgUrl}${details.poster_path}`}
-          className="w-full object-contain object-center hover:rounded-lg"
+          className="w-full object-contain object-center hover:rounded-lg cursor-pointer"
           data-testid="movie-poster"
         />
       </div>
       <p className="text-gray-400 font-semibold md:text-base text-sm">
         USA, <span data-testid="movie-release-date">{year}</span>
       </p>
-      <h2 className="text-gray-900 font-semibold md:text-xl tracking-tight capitalize"
-      data-testid="movie-title"
+      <h2
+        className="text-gray-900 font-semibold md:text-xl tracking-tight capitalize"
+        data-testid="movie-title"
       >
         {details.title}
       </h2>

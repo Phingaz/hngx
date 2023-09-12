@@ -7,7 +7,7 @@ export const Movie = ({ movieInfo }) => {
   const year = movieInfo?.release_date?.split("-")[0];
   const runtimeHour = Math.floor(movieInfo?.runtime / 60);
   const runtimeMin = movieInfo?.runtime % 60;
-
+  
   return (
     <div className="flex-1">
       <div className="flex flex-col items-start sm:flex-row sm:justify-between sm:items-center mb-4 md:mb-10">

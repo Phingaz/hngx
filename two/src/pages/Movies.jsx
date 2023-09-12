@@ -16,8 +16,6 @@ export const Movies = () => {
     ? `https://image.tmdb.org/t/p/original/${data?.backdrop_path}`
     : "";
 
-  console.log(data);
-
   return (
     <>
       {isPending ? (
@@ -31,10 +29,6 @@ export const Movies = () => {
                 <img src={bgUrl} className="w-full h-full" />
                 <PlayCircleIcon className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-50 scale-[5]"/>
               </div>
-              {/* <video className="w-full h-full" controls>
-            <source src="/docs/videos/flowbite.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video> */}
               {/* <iframe
             width="100%"
             height="100%"
