@@ -38,16 +38,6 @@ export const Landing = () => {
     setNumb(item);
   };
 
-  // const f = movies?.map((el) => {
-  //   if (favorites.includes(el.id)) {
-  //     setMovies((p) => [...p, { isFavorite: true }]);
-  //   } else {
-  //     setMovies((p) => [...p, { isFavorite: false }]);
-  //   }
-  // });
-
-  // console.log(f)
-
   return (
     <>
       <div

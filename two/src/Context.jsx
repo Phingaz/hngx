@@ -22,10 +22,8 @@ export function MainCtxProvider(props) {
     setFavoritesList((p) => [...p, data]);
   };
 
-  console.log(favorites);
-  console.log(favoritesList)
-
   const contextValue = {
+    favoritesList,
     movie,
     input,
     favorites,
