@@ -51,10 +51,10 @@
     display: block;
     position: fixed;
     top: 1.25rem;
-    right: 1.55rem;
+    right: 1.2rem;
     cursor: pointer;
     z-index: 10000;
-    scale: 2;
+    scale: 1.5;
     color: white;
     background-color: rgb(193, 3, 73);
   }

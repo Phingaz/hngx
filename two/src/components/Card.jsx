@@ -5,11 +5,14 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { moveiGenreId } from "./data";
 
 import Main from "../Context";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { motion as m } from "framer-motion";
 
 export const Card = ({ details, favorites }) => {
   const { setMovieDetails, handleFavorites } = useContext(Main);
+  const scrollRef = useRef(null);
 
   const baseImgUrl = "https://image.tmdb.org/t/p/original/";
 
@@ -38,7 +41,11 @@ export const Card = ({ details, favorites }) => {
   };
 
   return (
-    <div
+    <m.div
+      initial={{ opacity: 0}}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.3, delay: 0.1, ease: "easeIn" }}
+      viewport={{ scrollRef, margin: "-35px" }}
       onClick={handlClick}
       className="flex flex-col gap-1 border border-gray-100 b transition-all hover:s hover:rounded-lg pb-1 z-0"
       data-testid="movie-card"
@@ -100,6 +107,6 @@ export const Card = ({ details, favorites }) => {
           </p>
         ))}
       </div>
-    </div>
+    </m.div>
   );
 };
