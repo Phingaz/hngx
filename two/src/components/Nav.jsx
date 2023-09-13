@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import tv from "../components/asset/tv.png";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { links } from "../components/data.jsx";
@@ -25,7 +25,12 @@ export const Nav = () => {
         <span className={styled.ham}></span>
       </button>
 
-      <ArrowBackIcon className={styled.back} onClick={() => navigate(-1)} />
+      <Link
+        className={` block sm:hidden ${styled.back}`}
+        onClick={() => navigate(-1)}
+      >
+        <ArrowBackIcon />
+      </Link>
 
       <nav
         className={`flex-[2] h-[100svh] sm:flex flex-col items-center pt-10 gap-10 border border-gray-300 rounded-tr-[50px] rounded-br-[50px] ${

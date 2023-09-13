@@ -18,7 +18,6 @@
   }
 
   .nav_second {
-    display: none;
     flex-direction: column;
     position: fixed;
     top: 0;
@@ -49,6 +48,7 @@
   }
 
   .back {
+    display: block;
     position: fixed;
     top: 1.25rem;
     right: 1.55rem;
