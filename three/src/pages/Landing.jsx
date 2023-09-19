@@ -25,7 +25,7 @@ export const Landing = () => {
         <>
           <Header />
           <div className="min-h-[100svh] w-screen bg-stone-200">
-            <div className="flex flex-col gap-5 py-[100px] justify-center items-center place-content-center w-[min(95%,1000px)] min-h-full mx-auto">
+            <div className="flex flex-col gap-5 py-[100px] justify-center items-center place-content-center w-[min(90%,900px)] min-h-full mx-auto">
               <div className="relative w-full h-[50px] border-2 border-gray-400 rounded-lg hover:border-gray-600 t">
                 <input
                   value={search}
