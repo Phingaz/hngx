@@ -19,7 +19,7 @@ export const ImagesList = ({images}) => {
       {items?.map((item) => (
         <SortableItem key={item.id}>
           <div
-            className={`bg-stone-100 cursor-grab select-none flex flex-col gap-2 items-center p-3 rounded-xl b min-h-[300px]`}
+            className={`bg-stone-100 cursor-grab select-none flex flex-col gap-2 items-center p-3 rounded-xl b`}
           >
             <img
               src={item.url}
