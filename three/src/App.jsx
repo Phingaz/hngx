@@ -4,8 +4,8 @@ import { Login } from "./pages/Login";
 
 export const App = () => {
   const router = createBrowserRouter([
-    { path: "/", element: <Login /> },
-    { path: "/home", element: <Landing /> },
+    { path: "/home", element: <Login /> },
+    { path: "/", element: <Landing /> },
   ]);
   return <RouterProvider router={router} />;
 };

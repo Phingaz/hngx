@@ -1,31 +1,26 @@
-import SortableList, { SortableItem } from "react-easy-sort";
-import { arrayMoveImmutable } from "array-move";
-import { useState } from "react";
-import { images } from "../t";
+import { ImagesList } from "../components/Utility/ImagesList";
+import { Header } from "../components/Nav/Header";
+import SearchIcon from "@mui/icons-material/Search";
+import { images } from "../sample";
 
 export const Landing = () => {
-  const [items, setItems] = useState(images);
-
-  const onSortEnd = (oldIndex, newIndex) => {
-    setItems((array) => arrayMoveImmutable(array, oldIndex, newIndex));
-  };
-
   return (
-    <div className="h-screen w-screen bg-blue-300">
-      <SortableList
-        onSortEnd={onSortEnd}
-        className="select-none grid grid-cols-3 gap-3 bg-red-200 h-[80%] w-[90%] mx-auto"
-        draggedItemClassName="bg-green-200"
-      >
-        {items.map((item) => (
-          <SortableItem key={item.id}>
-            <div className={`${item.color} select-none`}>
-              <img src={item.url} className="pointer-events-none" />
-              {item.name}
+    <>
+      <Header />
+      <div className="min-h-[100svh] w-screen bg-stone-200">
+        <div className="flex flex-col gap-5 py-[100px] justify-center items-center place-content-center w-[min(95%,1000px)] min-h-full mx-auto">
+          <div className="relative w-full h-[50px] border-2 border-gray-400 rounded-lg hover:border-gray-600 t">
+            <input
+              placeholder="Start typing to search by tags"
+              className="w-full h-full bg-transparent px-5"
+            />
+            <div className="absolute right-5 top-[22%]">
+              <SearchIcon className="text-gray-400 hover:text-gray-600 cursor-pointer" />
             </div>
-          </SortableItem>
-        ))}
-      </SortableList>
-    </div>
+          </div>
+          <ImagesList images={images} />
+        </div>
+      </div>
+    </>
   );
 };
