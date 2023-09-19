@@ -2,30 +2,19 @@ import { ImagesList } from "../components/Utility/ImagesList";
 import { Header } from "../components/Nav/Header";
 import SearchIcon from "@mui/icons-material/Search";
 import { images } from "../sample";
-import { useState } from "react";
+import { useContext, useEffect } from "react";
+import Main from "../Contex";
+import { useNavigate } from "react-router";
 
 export const Landing = () => {
-  let tags = [];
-
-  images.forEach((el) => {
-    tags.push(...el.tag);
-  });
-
-  const [tagList, setTagList] = useState(tags);
-  const [search, setSearch] = useState("");
-
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-    if (e.target.value === "") {
-      setTagList(tags);
-    } else {
-      setTagList(
-        tags.filter((el) => {
-          return el.toLowerCase().includes(e.target.value.toLowerCase());
-        })
-      );
+  const { handleSearch, search, loggedIn } = useContext(Main);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (!loggedIn) {
+      navigate("/");
     }
-  };
+  }, [loggedIn, navigate]);
 
   return (
     <>
@@ -35,7 +24,7 @@ export const Landing = () => {
           <div className="relative w-full h-[50px] border-2 border-gray-400 rounded-lg hover:border-gray-600 t">
             <input
               value={search}
-              onChange={handleChange}
+              onChange={handleSearch}
               placeholder="Start typing to search by tags"
               className="w-full h-full bg-transparent px-5"
             />

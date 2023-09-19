@@ -1,14 +1,16 @@
-import { useNavigate } from "react-router";
-import { LoginForm } from "../components/Utility/Form";
-import { useEffect, useContext } from "react";
+import { useContext, useEffect } from "react";
+import { SignUpForm } from "../components/Utility/SignUpForm";
 import Main from "../Contex";
+import { useNavigate } from "react-router";
 
-export const Login = () => {
-  const navigate = useNavigate();
+export const Register = () => {
   const { loggedIn, isLoading } = useContext(Main);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    loggedIn && navigate("/home");
+    if (loggedIn) {
+      navigate("/home");
+    }
   }, [loggedIn, navigate]);
 
   return (
@@ -21,9 +23,9 @@ export const Login = () => {
             <div className=" w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 className="text-xl font-bold leading-tight tracking-tight mb-10">
-                  Sign in to your account
+                  Sign up to create an account
                 </h1>
-                <LoginForm />
+                <SignUpForm />
               </div>
             </div>
           </div>

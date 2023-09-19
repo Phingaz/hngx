@@ -54,4 +54,10 @@ export const images = [
     url: "https://ca.slack-edge.com/T05FFAA91JP-U05LXE4JGGM-187e668c00c4-512",
     tag: ["son", "goku"],
   },
+  {
+    id: 10,
+    name: "image7",
+    url: "https://ca.slack-edge.com/T05FFAA91JP-U05M33H7XQU-4fad3e4a0392-512",
+    tag: ["Lot", "anna"],
+  },
 ];
