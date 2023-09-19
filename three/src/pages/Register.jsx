@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { SignUpForm } from "../components/Utility/SignUpForm";
 import Main from "../Contex";
 import { useNavigate } from "react-router";
+import { Loader } from "../components/Utility/Loader";
 
 export const Register = () => {
   const { loggedIn, isLoading } = useContext(Main);
@@ -16,7 +17,7 @@ export const Register = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <section className="w-screen h-[100svh] bg-stone-100 text-gray-800 grid place-content-center px-10">
           <div className="flex flex-col w-[min(100%,500px)]  items-center justify-center py-8 mx-auto md:h-screen lg:py-0">

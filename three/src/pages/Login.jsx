@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { LoginForm } from "../components/Utility/Form";
 import { useEffect, useContext } from "react";
 import Main from "../Contex";
+import { Loader } from "../components/Utility/Loader";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export const Login = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <section className="w-screen h-[100svh] bg-stone-100 text-gray-800 grid place-content-center px-10">
           <div className="flex flex-col w-[min(100%,500px)]  items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
