@@ -19,7 +19,7 @@ export const ImagesList = () => {
   return (
     <SortableList
       onSortEnd={onSortEnd}
-      className="select-none grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3  h-[80%] w-full"
+      className="select-none grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 min-h-[80%] w-full"
       draggedItemClassName="opacity-50 cursor-grabbing"
     >
       {items?.map((item) => (

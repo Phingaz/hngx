@@ -47,7 +47,7 @@ export const Header = () => {
             <a
               href="https://piiimageuploader.netlify.app/"
               target="_blank"
-              className="flex justify-center items-center gap-4 hover:text-gray-700 hover:font-semibold font-normal text-lg t"
+              className="flex justify-center items-center gap-4 text-gray-500 hover:text-gray-700 hover:font-semibold font-normal text-lg t"
               rel="noreferrer"
             >
               Upload an image
@@ -56,7 +56,7 @@ export const Header = () => {
               onClick={() => {
                 removeSesh();
               }}
-              className="flex justify-center items-center gap-4 hover:text-gray-700 hover:font-semibold font-normal text-lg t"
+              className="flex justify-center items-center gap-4 text-gray-500 hover:text-gray-700 hover:font-semibold font-normal text-lg t"
             >
               Log out
             </button>
