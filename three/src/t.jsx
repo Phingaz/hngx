@@ -1,0 +1,50 @@
+export const images = [
+  {
+    id: 1,
+    name: "image1",
+    url: "https://picsum.photos/200/300",
+    color: "bg-red-200",
+    tag: ["tag1", "tag2"],
+  },
+  {
+    id: 2,
+    name: "image2",
+    url: "https://media.istockphoto.com/id/1146517111/photo/taj-mahal-mausoleum-in-agra.jpg?s=612x612&w=0&k=20&c=vcIjhwUrNyjoKbGbAQ5sOcEzDUgOfCsm9ySmJ8gNeRk=",
+    color: "bg-blue-200",
+    tag: ["tag1", "tag2"],
+  },
+  {
+    id: 3,
+    name: "image3",
+    url: "https://picsum.photos/200/300",
+    color: "bg-green-200",
+    tag: ["tag1", "tag2"],
+  },
+  {
+    id: 4,
+    name: "image4",
+    url: "https://picsum.photos/200/300",
+    color: "bg-yellow-200",
+    tag: ["tag1", "tag2"],
+  },
+  {
+    id: 5,
+    name: "image5",
+    url: "https://picsum.photos/200/300",
+    color: "bg-pink-200",
+    tag: ["g1", "tag7"],
+  },
+  {
+    id: 6,
+    name: "image6",
+    url: "https://picsum.photos/200/300",
+    color: "bg-purple-200",
+  },
+  {
+    id: 7,
+    name: "image7",
+    url: "https://picsum.photos/200/300",
+    color: "bg-gray-200",
+    tag: ["rer", "tag"],
+  },
+];
