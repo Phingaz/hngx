@@ -8,7 +8,8 @@ import { useNavigate } from "react-router";
 import { Loader } from "../components/Utility/Loader";
 
 export const Landing = () => {
-  const { handleSearch, search, loggedIn, isLoading } = useContext(Main);
+  const { handleSearch, search, loggedIn, isLoading, filteredImages } =
+    useContext(Main);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +38,11 @@ export const Landing = () => {
                   <SearchIcon className="text-gray-400 hover:text-gray-600 cursor-pointer" />
                 </div>
               </div>
-              <ImagesList images={images} />
+              {filteredImages?.length > 0 ? (
+                <ImagesList images={images} />
+              ) : (
+                <h1 className="text-3xl text-gray-400">No results found</h1>
+              )}
             </div>
           </div>
         </>

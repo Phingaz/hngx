@@ -8,8 +8,6 @@ import {
 } from "firebase/auth";
 import { auth } from "./components/FireBase";
 
-// import { useFetch } from "./components/useFetch";
-
 const Main = createContext();
 
 export function MainCtxProvider(props) {
@@ -167,7 +165,11 @@ export function MainCtxProvider(props) {
       return lowercaseTags.some((tag) => tag.includes(searchTerm));
     });
 
-    setFilteredImages(filteredImages);
+    if (filteredImages.length === 0) {
+      setFilteredImages();
+    } else {
+      setFilteredImages(filteredImages);
+    }
   };
 
   const handleChange = (e) => {
@@ -181,7 +183,7 @@ export function MainCtxProvider(props) {
   const [items, setItems] = useState();
 
   useEffect(() => {
-    const updatedList = filteredImages.length > 0 ? filteredImages : images;
+    const updatedList = filteredImages
     setItems(updatedList);
   }, [filteredImages]);
 
