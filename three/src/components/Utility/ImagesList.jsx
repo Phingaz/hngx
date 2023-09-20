@@ -1,16 +1,11 @@
 /* eslint-disable react/prop-types */
 import SortableList, { SortableItem } from "react-easy-sort";
 import { arrayMoveImmutable } from "array-move";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Main from "../../Contex";
 
 export const ImagesList = () => {
-  const { filteredImages, images } = useContext(Main);
-  const [items, setItems] = useState();
-
-  useEffect(() => {
-    setItems(filteredImages.length > 0 ? filteredImages : images);
-  }, [filteredImages, images]);
+  const { items, setItems } = useContext(Main);
 
   const onSortEnd = (oldIndex, newIndex) => {
     setItems((array) => arrayMoveImmutable(array, oldIndex, newIndex));

@@ -44,19 +44,19 @@ export const images = [
   },
   {
     id: 8,
-    name: "image7",
+    name: "image8",
     url: "https://ca.slack-edge.com/T05FFAA91JP-U05MDA38D3M-eac350cdf4e6-512",
     tag: ["The", "shinobi"],
   },
   {
     id: 9,
-    name: "image7",
+    name: "image9",
     url: "https://ca.slack-edge.com/T05FFAA91JP-U05LXE4JGGM-187e668c00c4-512",
     tag: ["son", "goku"],
   },
   {
     id: 10,
-    name: "image7",
+    name: "image10",
     url: "https://ca.slack-edge.com/T05FFAA91JP-U05M33H7XQU-4fad3e4a0392-512",
     tag: ["Lot", "anna"],
   },

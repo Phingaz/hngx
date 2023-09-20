@@ -8,6 +8,8 @@ import {
 } from "firebase/auth";
 import { auth } from "./components/FireBase";
 
+// import { useFetch } from "./components/useFetch";
+
 const Main = createContext();
 
 export function MainCtxProvider(props) {
@@ -176,7 +178,15 @@ export function MainCtxProvider(props) {
     setRegister((prev) => ({ ...prev, [name]: val }));
   };
 
+  const [items, setItems] = useState();
+
+  useEffect(() => {
+    const updatedList = filteredImages.length > 0 ? filteredImages : images;
+    setItems(updatedList);
+  }, [filteredImages]);
+
   const contextValue = {
+    items,
     isLoading,
     loggedIn,
     formError,
@@ -186,6 +196,7 @@ export function MainCtxProvider(props) {
     search,
     filteredImages,
     showPassword,
+    setItems,
     setLogin,
     setShowPassword,
     handleChange,

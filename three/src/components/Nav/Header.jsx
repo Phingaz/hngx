@@ -44,14 +44,14 @@ export const Header = () => {
       >
         {loggedIn && (
           <div className="flex flex-col md:flex-row gap-4 text-white">
-            <a
+            {/* <a
               href="https://piiimageuploader.netlify.app/"
               target="_blank"
               className="flex justify-center items-center gap-4 text-gray-500 hover:text-gray-700 hover:font-semibold font-normal text-lg t"
               rel="noreferrer"
             >
               Upload an image
-            </a>
+            </a> */}
             <button
               onClick={() => {
                 removeSesh();
