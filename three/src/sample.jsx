@@ -60,4 +60,28 @@ export const images = [
     url: "https://ca.slack-edge.com/T05FFAA91JP-U05M33H7XQU-4fad3e4a0392-512",
     tag: ["Lot", "anna"],
   },
+  {
+    id: 13,
+    name: "image10",
+    url: "https://ca.slack-edge.com/T05FFAA91JP-U05M33KT8AG-429bc88d6d11-512",
+    tag: ["Chi", "nedu"],
+  },
+  {
+    id: 12,
+    name: "image12",
+    url: "https://ca.slack-edge.com/T05FFAA91JP-U05LTL6CH38-c037bdb6f6e5-512",
+    tag: ["Fola", "bello"],
+  },
+  {
+    id: 11,
+    name: "image11",
+    url: "https://ca.slack-edge.com/T05FFAA91JP-U05MEQ4BT0T-225b2980c4f4-192",
+    tag: ["Oyin", "da"],
+  },
+  {
+    id: 14,
+    name: "image11",
+    url: "https://ca.slack-edge.com/T05FFAA91JP-U05LXC436NR-223d85aacea6-512",
+    tag: ["Jere", "miah"],
+  },
 ];
