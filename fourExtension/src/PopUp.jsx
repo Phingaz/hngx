@@ -3,7 +3,7 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import DesktopWindowsRoundedIcon from "@mui/icons-material/DesktopWindowsRounded";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import MicNoneOutlinedIcon from "@mui/icons-material/MicNoneOutlined";
-import Toggle from "../components/Toggle";
+import Toggle from "../../four/src/components/Toggle";
 import { useState } from "react";
 
 export const PopUp = () => {
@@ -29,7 +29,7 @@ export const PopUp = () => {
   return (
     <main className="w-[350px] flex flex-col gap-4">
       <div className="flex flex-col justify-center items-start w-full gap-5 py-5 px-7">
-        <a className="flex justify-between items-center w-full" href="https://hngxfour1.netlify.app" target="_blank">
+        <a className="flex justify-between items-center w-full" href="https://hngxfour1.netlify.app" target="_blank" rel="noreferrer">
           <div className="flex gap-2 justify-center items-center t hover:link">
             <img src="/icons/icon.png" className="w-[30px]" />
             <h1 className="text-xl font-semibold">HelpMeOut</h1>

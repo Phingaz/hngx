@@ -4,7 +4,6 @@ import { VideoPage } from "./pages/VideoPage";
 import { Login } from "./pages/Login";
 import { LoggedIn } from "./pages/LoggedIn";
 import { VideoInfo } from "./pages/VideoInfo";
-// import { PopUp } from "./pages/PopUp";
 
 export const App = () => {
   const router = createBrowserRouter([
