@@ -29,7 +29,7 @@ export const PopUp = () => {
   return (
     <main className="w-[350px] flex flex-col gap-4">
       <div className="flex flex-col justify-center items-start w-full gap-5 py-5 px-7">
-        <div className="flex justify-between items-center w-full">
+        <a className="flex justify-between items-center w-full" href="https://hngxfour1.netlify.app" target="_blank">
           <div className="flex gap-2 justify-center items-center t hover:link">
             <img src="/icons/icon.png" className="w-[30px]" />
             <h1 className="text-xl font-semibold">HelpMeOut</h1>
@@ -45,7 +45,7 @@ export const PopUp = () => {
               />
             </span>
           </div>
-        </div>
+        </a>
         <p className="my-2 text-[#413c6d]">
           This extension helps you record and share help videos with ease.
         </p>
