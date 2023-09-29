@@ -3,7 +3,7 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import DesktopWindowsRoundedIcon from "@mui/icons-material/DesktopWindowsRounded";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import MicNoneOutlinedIcon from "@mui/icons-material/MicNoneOutlined";
-import Toggle from "../../four/src/components/Toggle";
+import Toggle from "./Toggle";
 import { useState } from "react";
 
 export const PopUp = () => {

@@ -1,0 +1,123 @@
+:root {
+  --ham-lines: #6a57f6;
+  --mobile-nav-bg-color: rgb(8, 0, 50);
+  --nav-width: 45%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  color: white;
+  z-index: 1;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.168);
+  padding: 0 3rem;
+}
+
+.nav_btn {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .header {
+    padding: 0 1rem;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100svh;
+    min-width: 0;
+    padding: 100px 20px 0 20px;
+    gap: 2rem;
+    overflow-x: hidden;
+    z-index: 999;
+    background-color: var(--mobile-nav-bg-color);
+  }
+
+  .nav_btn {
+    position: fixed;
+    right: 1.1rem;
+    width: 40px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .ham {
+    display: block;
+    width: 90%;
+    height: 5px;
+    background-color: var(--ham-lines);
+    border-radius: 5px;
+    transition: 0.1s ease-in;
+  }
+
+  .nav_btn.openb .ham:nth-child(1) {
+    transform: translateY(11.8px) rotate(45deg);
+  }
+
+  .nav_btn.openb .ham:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav_btn.openb .ham:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+  }
+
+  .open {
+    display: flex;
+    opacity: 1;
+    animation: slideDown 0.5s;
+    transition: all 0.1s ease-in;
+    width: var(--nav-width);
+  }
+
+  .closed {
+    animation: slideUp 0.5s;
+    animation-fill-mode: forwards;
+    transition: all 0.1s ease-in-out;
+    width: 0;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      width: 0;
+    }
+
+    to {
+      opacity: 1;
+      width: var(--nav-width);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      display: flex;
+      opacity: 1;
+      width: var(--nav-width);
+    }
+
+    to {
+      display: none;
+      opacity: 0;
+      width: 0;
+    }
+  }
+}
