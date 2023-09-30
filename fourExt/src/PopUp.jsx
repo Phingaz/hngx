@@ -28,6 +28,7 @@ export const PopUp = () => {
   const [timerInterval, setTimerInterval] = useState(null);
   const [isPaused, setPaused] = useState(false);
   const [time, setTime] = useState(0);
+  const [settings, setSettings] = useState(true);
 
   useEffect(() => {
     if (recording && !isPaused) {
@@ -224,14 +225,12 @@ export const PopUp = () => {
             <h1 className="text-xl font-semibold">HelpMeOut</h1>
           </div>
           <div className="flex gap-2">
-            <a
+            <button
               className="t hover:link"
-              href=""
-              target="_blank"
-              rel="noreferrer"
+              onClick={() => setSettings((p) => !p)}
             >
               <SettingsOutlinedIcon sx={smIcon} />
-            </a>
+            </button>
             <span className="t hover:text-primary" onClick={closePopup}>
               <CancelOutlinedIcon
                 sx={smIcon}
@@ -273,25 +272,29 @@ export const PopUp = () => {
             <p className="font-semibold cursor-text">Current Tab</p>
           </div>
         </div>
-        <div className="flex justify-between w-full border-2 border-primary rounded-2xl p-3">
-          <div className="flex justify-center items-center gap-2">
-            <span>
-              <VideocamOutlinedIcon sx={mdIcon} />
-            </span>
-            <p className="font-semibold">Video</p>
-          </div>
-          <Toggle state={video} setState={setVideo} />
-        </div>
-        <div className="flex justify-between w-full border-2 border-primary rounded-2xl p-3">
-          <div className="flex justify-center items-center gap-2">
-            <span>
-              <MicNoneOutlinedIcon sx={mdIcon} />
-            </span>
-            <p className="font-semibold">Audio</p>
-          </div>
-          <Toggle state={audio} setState={setAudio} />
-        </div>
 
+        {settings && (
+          <div className="w-full">
+            <div className="flex justify-between w-full border-2 border-primary rounded-2xl p-3 mb-5">
+              <div className="flex justify-center items-center gap-2">
+                <span>
+                  <VideocamOutlinedIcon sx={mdIcon} />
+                </span>
+                <p className="font-semibold">Video</p>
+              </div>
+              <Toggle state={video} setState={setVideo} />
+            </div>
+            <div className="flex justify-between w-full border-2 border-primary rounded-2xl p-3">
+              <div className="flex justify-center items-center gap-2">
+                <span>
+                  <MicNoneOutlinedIcon sx={mdIcon} />
+                </span>
+                <p className="font-semibold">Audio</p>
+              </div>
+              <Toggle state={audio} setState={setAudio} />
+            </div>
+          </div>
+        )}
         <button
           onClick={start}
           className="bg-primary w-full text-white rounded-2xl h-[50px] hover:btn-link"
