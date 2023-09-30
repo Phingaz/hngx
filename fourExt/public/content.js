@@ -1,5 +1,8 @@
 var recorder = null;
 
+
+
+
 async function startRecorder(audio, currentTab) {
   const mediaConstraints = {
     preferCurrentTab: currentTab,
@@ -19,7 +22,6 @@ async function onAccessApproved(stream) {
 
   recorder = new MediaRecorder(stream, { mimeType });
   recorder.start();
-
   recorder.onstop = () => {
     stream.getTracks().forEach((track) => {
       if (track.readyState === "live") {
@@ -53,6 +55,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       const stream = await startRecorder(audio, currentTab);
       const data = await onAccessApproved(stream);
       sendResponse({ status: data });
+      addBtns()
     })();
     return true;
   }
