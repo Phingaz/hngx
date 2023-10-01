@@ -95,17 +95,17 @@
 
       <div class="btn-wrapper">
         <div class="btn">
-          <span><img src="/pause.svg" class="pause" /></span>
+          <span class="pause"><img src="/pause.svg" /></span>
           <p>Pause</p>
         </div>
 
         <div class="btn">
-          <span><img src="/play.svg" class="play" /></span>
+          <span class="play"><img src="/play.svg" /></span>
           <p>Play</p>
         </div>
 
         <div class="btn">
-          <span><img src="/stop.svg" class="stop" /></span>
+          <span class="stop"><img src="/stop.svg" /></span>
           <p>Stop</p>
         </div>
 
@@ -120,42 +120,10 @@
         </div>
 
         <div class="btn last">
-          <span><img src="/trash.svg" class="trash" /></span>
+          <span class="trash"><img src="/trash.svg" /></span>
         </div>
       </div>
     </div>
-    <script>
-      const playControl = document.querySelector(".play");
-      const stopControl = document.querySelector(".stop");
-
-      const stop = () => {
-        chrome.tabs.query(
-          { active: true, currentWindow: true },
-          function (tabs) {
-            if (tabs.length > 0) {
-              chrome.tabs.sendMessage(
-                tabs[0].id,
-                { action: "stop" },
-                function (response) {
-                  playControl.addEventListener("click", () => {
-                    console.log("play clicked");
-                  });
-                  stopControl.addEventListener("click", () => {
-                    console.log("stop clicked");
-                  });
-                  if (!chrome.runtime.lastError) {
-                    console.log(response);
-                  } else {
-                    console.error(chrome.runtime.lastError);
-                  }
-                }
-              );
-            } else {
-              console.log("No active tab");
-            }
-          }
-        );
-      };
-    </script>
+    <script></script>
   </body>
 </html>

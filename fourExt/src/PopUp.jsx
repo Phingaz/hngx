@@ -5,7 +5,6 @@ import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import MicNoneOutlinedIcon from "@mui/icons-material/MicNoneOutlined";
 import Toggle from "./Toggle";
 import { useState, useEffect } from "react";
-import { Control } from "./Control";
 
 export const PopUp = () => {
   const largeIcon = {
@@ -67,12 +66,9 @@ export const PopUp = () => {
               audio: audio,
               currentTab: currentTab,
             },
-
-            function (response) {
+            function () {
               if (!chrome.runtime.lastError) {
-                // startControl();
-              } else {
-                console.error(chrome.runtime.lastError);
+                window.close();
               }
             }
           );
@@ -85,139 +81,8 @@ export const PopUp = () => {
     });
   };
 
-  const stop = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      if (tabs.length > 0) {
-        chrome.tabs.sendMessage(
-          tabs[0].id,
-          { action: "stop" },
-          function (response) {
-            if (!chrome.runtime.lastError) {
-              stopControl();
-            } else {
-              console.error(chrome.runtime.lastError);
-            }
-          }
-        );
-      } else {
-        console.log("No active tab");
-      }
-    });
-  };
-
-  const pause = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      if (tabs.length > 0) {
-        chrome.tabs.sendMessage(
-          tabs[0].id,
-          { action: "pause" },
-          function (response) {
-            if (!chrome.runtime.lastError) {
-              pauseControl();
-            } else {
-              console.error(chrome.runtime.lastError);
-            }
-          }
-        );
-      } else {
-        console.log("No active tab");
-      }
-    });
-  };
-
-  const resume = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      if (tabs.length > 0) {
-        chrome.tabs.sendMessage(
-          tabs[0].id,
-          { action: "resume" },
-          function (response) {
-            if (!chrome.runtime.lastError) {
-              resumeControl();
-            } else {
-              console.error(chrome.runtime.lastError);
-            }
-          }
-        );
-      } else {
-        console.log("No active tab");
-      }
-    });
-  };
-
-  const clear = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      if (tabs.length > 0) {
-        chrome.tabs.sendMessage(
-          tabs[0].id,
-          { action: "clear" },
-          function (response) {
-            if (!chrome.runtime.lastError) {
-              clearControl();
-            } else {
-              console.error(chrome.runtime.lastError);
-            }
-          }
-        );
-      } else {
-        console.log("No active tab");
-      }
-    });
-  };
-
-  const startControl = () => {
-    setRecording(true);
-  };
-
-  const stopControl = () => {
-    clearInterval(timerInterval);
-  };
-
-  const pauseControl = () => {
-    setPaused(true);
-    setTime(elapsedTime);
-  };
-
-  const resumeControl = () => {
-    setPaused(false);
-    setElapsedTime(time);
-  };
-
-  const clearControl = () => {
-    setRecording(false);
-    setPaused(false);
-    setElapsedTime(0);
-    clearInterval(timerInterval);
-  };
-
-  const formatTime = (seconds) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
-      2,
-      "0"
-    )}:${String(secs).padStart(2, "0")}`;
-  };
-
-  const closePopup = () => {
-    window.close();
-  };
-
   return (
     <main className="min-w-[350px] flex flex-col gap-4">
-      {recording && (
-        <Control
-          pause={pause}
-          resume={resume}
-          clear={clear}
-          stop={stop}
-          time={formatTime(elapsedTime)}
-          isPlaying={recording}
-          video={video}
-          audio={audio}
-        />
-      )}
       <div className="flex flex-col justify-center items-start w-full gap-5 py-5 px-7">
         <div className="flex justify-between items-center w-full">
           <div className="flex gap-2 justify-center items-center t hover:link">
@@ -231,7 +96,10 @@ export const PopUp = () => {
             >
               <SettingsOutlinedIcon sx={smIcon} />
             </button>
-            <span className="t hover:text-primary" onClick={closePopup}>
+            <span
+              className="t hover:text-primary"
+              onClick={() => window.close()}
+            >
               <CancelOutlinedIcon
                 sx={smIcon}
                 className="opacity-25 t hover:opacity-100 hover:t"

@@ -26,7 +26,14 @@
   "host_permissions": ["http://*/*", "https://*/*"],
   "web_accessible_resources": [
     {
-      "resources": ["control.html", "mic.svg", "trash.svg", "video.svg", "rectangle.svg", "stop.svg"],
+      "resources": [
+        "control.html",
+        "play.svg",
+        "mic.svg",
+        "trash.svg",
+        "video.svg",
+        "stop.svg"
+      ],
       "matches": ["<all_urls>"]
     }
   ]
