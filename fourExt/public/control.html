@@ -11,7 +11,7 @@
         display: flex;
         justify-self: center;
         align-items: center;
-        background-color: rgb(20, 20, 20);
+        background-color: rgb(30, 29, 29);
         color: white;
         padding: 10px;
         padding-bottom: 0;
@@ -26,7 +26,7 @@
         z-index: 1000000000;
       }
 
-      .time {
+      .controlHelpMeOuttime {
         display: flex;
         gap: 2;
         justify-content: center;
@@ -37,7 +37,14 @@
         margin-right: 20px;
       }
 
-      .dot {
+      .controlHelpMeOuttime > p > .hours,
+      .controlHelpMeOuttime > p > .minutes,
+      .controlHelpMeOuttime > p > .seconds {
+        min-width: 30px;
+        font-weight: 500;
+      }
+
+      .controlHelpMeOutdot {
         height: 8px;
         width: 8px;
         color: white;
@@ -47,19 +54,19 @@
         box-shadow: 0 0 5px 3px rgb(149, 8, 8);
       }
 
-      .btn-wrapper {
+      .controlHelpMeOutbtn-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
       }
 
-      .btn {
+      .controlHelpMeOutcontainer {
         display: grid;
         place-items: center;
         margin-right: 20px;
       }
 
-      .btn > span {
+      .controlHelpMeOutcontainer > span {
         display: grid;
         place-content: center;
         height: 30px;
@@ -70,57 +77,59 @@
         cursor: pointer;
       }
 
-      .btn > p {
+      .controlHelpMeOutcontainer > p {
         font-size: 12px;
         font-weight: 500;
       }
 
-      .last > span {
+      .controlHelpMeOutlast > span {
         background-color: gray;
       }
 
-      .play {
-        height: 20px;
-        width: 20px;
+      .controlHelpMeOutcontainer > .pause > * {
+        max-width: 20px;
+        max-width: 20px;
+      }
+
+      .controlHelpMeOutlast {
+        align-self: flex-start;
       }
     </style>
   </head>
 
   <body>
     <div id="controlHelpMeOut">
-      <div class="time">
-        <p>00:00:00</p>
-        <span class="dot"></span>
+      <div class="controlHelpMeOuttime">
+        <p>
+          <span class="hours">00</span> : <span class="minutes">00</span> :
+          <span class="seconds">00</span>
+        </p>
+        <span class="controlHelpMeOutdot"></span>
       </div>
 
-      <div class="btn-wrapper">
-        <div class="btn">
-          <span class="pause"><img src="/pause.svg" /></span>
-          <p>Pause</p>
+      <div class="controlHelpMeOutbtn-wrapper">
+        <div class="controlHelpMeOutcontainer">
+          <span class="pause"></span>
+          <p class="pauseText">Pause</p>
         </div>
 
-        <div class="btn">
-          <span class="play"><img src="/play.svg" /></span>
-          <p>Play</p>
-        </div>
-
-        <div class="btn">
-          <span class="stop"><img src="/stop.svg" /></span>
+        <div class="controlHelpMeOutcontainer">
+          <span class="stop"></span>
           <p>Stop</p>
         </div>
 
-        <div class="btn">
-          <span><img src="/video.svg" /></span>
+        <div class="controlHelpMeOutcontainer">
+          <span class="video"></span>
           <p>Video</p>
         </div>
 
-        <div class="btn">
-          <span><img src="mic.svg" /></span>
+        <div class="controlHelpMeOutcontainer">
+          <span class="mic"></span>
           <p>Mic</p>
         </div>
 
-        <div class="btn last">
-          <span class="trash"><img src="/trash.svg" /></span>
+        <div class="controlHelpMeOutcontainer controlHelpMeOutlast">
+          <span class="trash"></span>
         </div>
       </div>
     </div>
