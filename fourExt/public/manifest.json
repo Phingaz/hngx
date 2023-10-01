@@ -23,5 +23,11 @@
   "background": {
     "service_worker": "background.js"
   },
-  "host_permissions": ["http://*/*", "https://*/*"]
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "web_accessible_resources": [
+    {
+      "resources": ["control.html", "mic.svg", "trash.svg", "video.svg", "rectangle.svg", "stop.svg"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

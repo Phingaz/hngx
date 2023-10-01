@@ -1,8 +1,5 @@
 var recorder = null;
 
-
-
-
 async function startRecorder(audio, currentTab) {
   const mediaConstraints = {
     preferCurrentTab: currentTab,
@@ -22,12 +19,13 @@ async function onAccessApproved(stream) {
 
   recorder = new MediaRecorder(stream, { mimeType });
   recorder.start();
+
   recorder.onstop = () => {
     stream.getTracks().forEach((track) => {
       if (track.readyState === "live") {
         track.stop();
       }
-      window.open("https://hngxfour1.netlify.app/", "_blank");
+      window.open("https://hngxfour1.netlify.app/video", "_blank");
     });
   };
 
@@ -52,17 +50,22 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const audio = message.audio;
     const currentTab = message.currentTab;
     (async () => {
-      const stream = await startRecorder(audio, currentTab);
-      const data = await onAccessApproved(stream);
-      sendResponse({ status: data });
-      addBtns()
+      // const stream = await startRecorder(audio, currentTab);
+      // const data = await onAccessApproved(stream);
+      sendResponse({ status: "started" });
+      //fetch(chrome.runtime.getURL("/control.html"))
+        //.then((r) => r.text())
+        //.then((html) => {
+          //document.body.insertAdjacentHTML("beforeend", html);
+        //});
+      //chrome.runtime.sendMessage({ action: "started" });
     })();
     return true;
   }
   if (message.action === "stop") {
     if (!recorder) return;
     (async () => {
-      recorder.stop();
+      await recorder.stop();
       sendResponse({ status: "stopped" });
     })();
     return true;
@@ -70,7 +73,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "pause") {
     if (!recorder) return;
     (async () => {
-      recorder.pause();
+      await recorder.pause();
       sendResponse({ status: "pause" });
     })();
     return true;
@@ -78,7 +81,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "resume") {
     if (!recorder) return;
     (async () => {
-      recorder.resume();
+      await recorder.resume();
       sendResponse({ status: "resume" });
     })();
     return true;
@@ -86,9 +89,45 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "clear") {
     if (!recorder) return;
     (async () => {
-      recorder.clear();
+      await recorder.clear();
       sendResponse({ status: "clear" });
     })();
     return true;
   }
 });
+
+const addBtns = () => {
+  document.addEventListener("DOMContentLoaded", function () {
+    const body = document.querySelector("body");
+
+    const fragment = document.createDocumentFragment();
+
+    const control = document.createElement("div");
+    control.id = "controlHelpMeOut";
+    control.className = "controlHelpMeOut";
+
+    const template = `
+      <div class="time">
+        <p>00:00:00</p>
+        <span class="dot"></span>
+      </div>
+
+      <div class="btn-wrapper">
+        <div class="btn">
+          <span><img src="pause.svg" /></span>
+          <p>Pause</p>
+        </div>
+      </div>
+    `;
+    control.innerHTML = template;
+
+    // Append the control element to the fragment
+    fragment.appendChild(control);
+
+    // Insert the fragment into the body of the document
+    body.appendChild(fragment);
+  });
+};
+
+const loadexternal = () => {
+};

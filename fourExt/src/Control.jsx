@@ -44,7 +44,7 @@ export const Control = ({
   ];
 
   return (
-    <div className="fixed md:flex-row flex-col flex top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black text-white justify-evenly items-center gap-5 rounded-[50px] px-5 py-2 mainShadw z-50">
+    <div className="fixed md:flex-row flex-col flex top-[80%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black text-white justify-evenly items-center gap-5 rounded-[50px] px-5 py-2 mainShadw z-[1000000000000000]">
       <div className="flex justify-center items-center gap-3 border-r-[1px] pr-4 min-h-[50px]">
         <p>{time}</p>
         <span className="w-[9px] h-[9px] bg-red-700 aspect-square shadw rounded-full"></span>

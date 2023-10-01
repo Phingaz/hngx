@@ -70,7 +70,7 @@ export const PopUp = () => {
 
             function (response) {
               if (!chrome.runtime.lastError) {
-                startControl();
+                // startControl();
               } else {
                 console.error(chrome.runtime.lastError);
               }
@@ -219,7 +219,7 @@ export const PopUp = () => {
         />
       )}
       <div className="flex flex-col justify-center items-start w-full gap-5 py-5 px-7">
-        <button className="flex justify-between items-center w-full">
+        <div className="flex justify-between items-center w-full">
           <div className="flex gap-2 justify-center items-center t hover:link">
             <img src="icon.png" className="w-[30px]" />
             <h1 className="text-xl font-semibold">HelpMeOut</h1>
@@ -238,7 +238,7 @@ export const PopUp = () => {
               />
             </span>
           </div>
-        </button>
+        </div>
         <p className="my-2 text-[#413c6d]">
           This extension helps you record and share help videos with ease.
         </p>
