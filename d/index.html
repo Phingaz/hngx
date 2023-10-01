@@ -127,22 +127,22 @@
     <script>
       const playControl = document.querySelector(".play");
       const stopControl = document.querySelector(".stop");
+      const pauseControl = document.querySelector(".pause");
 
-      const stop = () => {
+      pauseControl.addEventListener("click", () => {
+        console.log("pause clicked");
+        pause();
+      });
+
+      const pause = () => {
         chrome.tabs.query(
           { active: true, currentWindow: true },
           function (tabs) {
             if (tabs.length > 0) {
               chrome.tabs.sendMessage(
                 tabs[0].id,
-                { action: "stop" },
+                { action: "pause" },
                 function (response) {
-                  playControl.addEventListener("click", () => {
-                    console.log("play clicked");
-                  });
-                  stopControl.addEventListener("click", () => {
-                    console.log("stop clicked");
-                  });
                   if (!chrome.runtime.lastError) {
                     console.log(response);
                   } else {
