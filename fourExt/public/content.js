@@ -1,3 +1,72 @@
+// async function startRecorder(audio, currentTab) {
+//   const mediaConstraints = {
+//     preferCurrentTab: currentTab,
+//     video: { mediaSource: "screen" },
+//     audio: audio,
+//   };
+
+//   const stream = await navigator.mediaDevices.getDisplayMedia(mediaConstraints);
+
+//   return stream;
+// }
+
+// async function onAccessApproved(stream) {
+//   var recorder = null;
+
+//   const mimeType = MediaRecorder.isTypeSupported("video/webm;codecs=vp9")
+//     ? "video/webm;codecs=vp9"
+//     : "video/webm;codecs=vp8";
+
+//   recorder = new MediaRecorder(stream, { mimeType });
+
+//   recorder.start();
+
+//   recorder.onstop = () => {
+//     stream.getTracks().forEach((track) => {
+//       if (track.readyState === "live") {
+//         track.stop();
+//       }
+//       window.open("https://hngxfour1.netlify.app/video", "_blank");
+//     });
+//   };
+
+//   // recorder.addEventListener("dataavailable", (e) => {
+//   // });
+//   let chunks = [];
+
+//   recorder.ondataavailable = (e) => {
+//     const formData = new FormData();
+//     if (e.data.size > 0) {
+//       chunks.push(e.data);
+//       console.log(chunks);
+//     } else {
+//       console.log("data is empty");
+//     }
+//     formData.append("blob", e.data);
+
+//   };
+
+//   return recorder;
+// }
+
+function generateRandomIdWithTimestamp(length = 8) {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let randomId = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomId += characters.charAt(randomIndex);
+  }
+
+  const currentTimestamp = new Date().getTime(); // Get current timestamp in milliseconds
+
+  // Append the timestamp to the random ID
+  const idWithTimestamp = `${randomId}_${currentTimestamp}`;
+
+  return idWithTimestamp;
+}
+
 async function startRecorder(audio, currentTab) {
   const mediaConstraints = {
     preferCurrentTab: currentTab,
@@ -6,7 +75,6 @@ async function startRecorder(audio, currentTab) {
   };
 
   const stream = await navigator.mediaDevices.getDisplayMedia(mediaConstraints);
-
   return stream;
 }
 
@@ -18,32 +86,50 @@ async function onAccessApproved(stream) {
     : "video/webm;codecs=vp8";
 
   recorder = new MediaRecorder(stream, { mimeType });
+
   recorder.start();
+
+  let chunks = [];
+
+  recorder.ondataavailable = async (e) => {
+    chunks.push(e.data);
+    await sendChunksToServer(chunks);
+  };
 
   recorder.onstop = () => {
     stream.getTracks().forEach((track) => {
       if (track.readyState === "live") {
         track.stop();
       }
-      window.open("https://hngxfour1.netlify.app/video", "_blank");
+      // window.open("https://hngxfour1.netlify.app/video", "_blank");
     });
-  };
-
-  recorder.ondataavailable = (e) => {
-    let recordedBlob = e.data;
-    var url = URL.createObjectURL(recordedBlob);
-    var a = document.createElement("a");
-    document.body.appendChild(a);
-    a.style = "display: none";
-    a.href = url;
-    a.download = "test.webm";
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
   };
 
   return recorder;
 }
+
+const sendChunksToServer = async (chunks) => {
+  if (chunks.length > 0) {
+    const formData = new FormData();
+    const videoBlob = new Blob(chunks, { type: chunks[0].type });
+    formData.append("blob", videoBlob);
+    formData.append("video", generateRandomIdWithTimestamp());
+
+    try {
+      const response = await fetch(
+        `https://hngx-chrome-extension-api.onrender.com/api`,
+        { method: "POST", body: formData }
+      );
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    console.log("No chunks to send");
+  }
+};
 
 const pauseRecorder = (recorder) => {
   recorder.pause();
@@ -220,3 +306,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 });
+
+// let recordedBlob = e.data;
+// var url = URL.createObjectURL(recordedBlob);
+// var a = document.createElement("a");
+// document.body.appendChild(a);
+// a.style = "display: none";
+// a.href = url;
+// a.download = "test.webm";
+// a.click();
+// document.body.removeChild(a);
+// window.URL.revokeObjectURL(url);
