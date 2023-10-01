@@ -92,8 +92,9 @@ async function onAccessApproved(stream) {
   let chunks = [];
 
   recorder.ondataavailable = async (e) => {
+    console.log(e);
     chunks.push(e.data);
-    await sendChunksToServer(chunks);
+    // await sendChunksToServer(chunks);
   };
 
   recorder.onstop = () => {
