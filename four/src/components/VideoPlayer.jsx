@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 
-export const VideoPlayer = () => {
+export const VideoPlayer = ({ url }) => {
   return (
-    <section className="flex flex-col gap-5">
-      <video controls className="w-full rounded-lg mb-10"></video>
-    </section>
+    <iframe
+      className="w-full min-h-[400px] b"
+      src={url}
+      title="Screen Recording"
+    ></iframe>
   );
 };

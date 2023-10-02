@@ -8,6 +8,7 @@ import hero3sub from "../assets/hero3sub.png";
 import feature from "../assets/videoFeature.png";
 import placeholder from "../assets/placeholder.png";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import { useState } from "react";
 
 export const Landing = () => {
   const features = [
@@ -55,6 +56,37 @@ export const Landing = () => {
     },
   ];
 
+  const [url, setUrl] = useState("http://");
+  const [videoName, setVideoName] = useState("video name");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState({
+    state: false,
+    message: null,
+  });
+
+  const backend = `https://seashell-app-4jicj.ondigitalocean.app/api`;
+  const getVideo = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `${backend}/video/get/${"xO0RYPIb_1696274940211"}`
+      );
+      const data = await response.json();
+      // setVideoName(data.data.id);
+      // setUrl(data.data.videoPath);
+      // setIsLoading(false);
+      console.log(data);
+    } catch (error) {
+      setError({
+        state: true,
+        message: error,
+      });
+      setIsLoading(false);
+    }
+  };
+
+  getVideo();
+  
   return (
     <Wrapper>
       <main

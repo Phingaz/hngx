@@ -1,9 +1,54 @@
 import { LoggedInWrapper } from "../components/LoggedInWrapper";
 import v from "../assets/videoFrame.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const LoggedIn = () => {
-  const navigate = useNavigate();
+  function formatTimestamp(inputTimestamp) {
+    // Create a Date object from the input timestamp
+    const date = new Date(inputTimestamp);
+
+    // Define arrays for month names and day names
+    const monthNames = [
+      "JANUARY",
+      "FEBRUARY",
+      "MARCH",
+      "APRIL",
+      "MAY",
+      "JUNE",
+      "JULY",
+      "AUGUST",
+      "SEPTEMBER",
+      "OCTOBER",
+      "NOVEMBER",
+      "DECEMBER",
+    ];
+
+    // Get the month, day, year, and time components
+    const month = monthNames[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    // Format the date and time
+    const formattedDate = `${month} ${day}, ${year} at ${hours}:${minutes}`;
+
+    return formattedDate;
+  }
+
+  // const { id } = useParams();
+  // const [videoId, setVideoId] = useState(id);
+  const [url, setUrl] = useState("http://");
+  const [videoName, setVideoName] = useState("video name");
+  // const [transcript, setTranscript] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [rename, setRename] = useState(false);
+  const [error, setError] = useState({
+    state: false,
+    message: null,
+  });
   const items = [
     {
       id: 1,
@@ -18,6 +63,30 @@ export const LoggedIn = () => {
       img: v,
     },
   ];
+
+  useEffect(() => {
+    const backend = `https://seashell-app-4jicj.ondigitalocean.app/api`;
+    const getVideo = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`${backend}/videos`);
+        const data = await response.json();
+        // setVideoName(data.data.id);
+        // setUrl(data.data.videoPath);
+        // setIsLoading(false);
+        console.log(data);
+      } catch (error) {
+        setError({
+          state: true,
+          message: error,
+        });
+        setIsLoading(false);
+      }
+    };
+
+    // getVideo();
+  }, []);
+
   return (
     <LoggedInWrapper>
       <section>

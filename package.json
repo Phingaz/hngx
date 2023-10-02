@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "@react-three/fiber": "^8.14.3",
     "four": "^0.0.1-a",
+    "three": "^0.157.0"
+  },
+  "devDependencies": {
     "vite": "^4.4.9"
   }
 }

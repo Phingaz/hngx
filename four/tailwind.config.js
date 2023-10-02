@@ -14,9 +14,14 @@ export default {
           from: { transform: "translateY(-10px)" },
           to: { transform: "translateY(0px)" },
         },
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
       },
       animation: {
         show: "show .3s ease",
+        fadeIn: "fadeIn .5s ease",
       },
     },
   },
