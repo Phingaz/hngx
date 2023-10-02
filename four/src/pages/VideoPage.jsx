@@ -7,7 +7,19 @@ import { Transcript } from "../components/Transcript";
 import { Loader } from "../components/Loader";
 
 export const VideoPage = () => {
-;
+  
+  // const { id } = useParams();
+  // const [videoId, setVideoId] = useState(id);
+  const [url, setUrl] = useState("http://");
+  const [videoName, setVideoName] = useState("video name");
+  // const [transcript, setTranscript] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [rename, setRename] = useState(false);
+  const [error, setError] = useState({
+    state: false,
+    message: null,
+  });
 
   useEffect(() => {
     const backend = `https://seashell-app-4jicj.ondigitalocean.app/api`;
