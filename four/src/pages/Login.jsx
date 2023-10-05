@@ -1,11 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 //
 export const Login = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/welcome");
+    if (isLoggedIn) {
+      login();
+    } else {
+      signup();
+    }
+  };
+
+  const login = () => {
+    // navigate("/welcome");
+  };
+
+  const signup = () => {
+    console.log("Signup");
   };
   return (
     <section className="flex justify-center items-center min-h-[100svh]">
@@ -61,7 +77,46 @@ export const Login = () => {
               placeholder="Enter your password"
             />
           </label>
-          <button className="btn-main t hover:btn-link">Sign Up</button>
+          {isLoggedIn ? (
+            <button
+              type="button"
+              onClick={login}
+              className="btn-main t hover:btn-link"
+            >
+              Log In
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={signup}
+              className="btn-main t hover:btn-link"
+            >
+              Sign Up
+            </button>
+          )}
+          {isLoggedIn ? (
+            <p className="flex justify-end gap-2 text-gray-500">
+              Don't have an account?{" "}
+              <button
+                type="button"
+                onClick={() => setIsLoggedIn((p) => !p)}
+                className="underline text-primary font-semibold"
+              >
+                Sign Up
+              </button>
+            </p>
+          ) : (
+            <p className="flex justify-end gap-2 text-gray-500">
+              Already have an account?{" "}
+              <button
+                type="button"
+                onClick={() => setIsLoggedIn((p) => !p)}
+                className="underline text-primary font-semibold"
+              >
+                Login
+              </button>
+            </p>
+          )}
         </form>
       </div>
     </section>

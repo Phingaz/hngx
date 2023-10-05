@@ -5,11 +5,11 @@ import { Wrapper } from "../components/Wrapper";
 import { useEffect, useState } from "react";
 import { Transcript } from "../components/Transcript";
 import { Loader } from "../components/Loader";
+import { useParams } from "react-router-dom";
 
 export const VideoPage = () => {
-  
-  // const { id } = useParams();
-  // const [videoId, setVideoId] = useState(id);
+  const { id } = useParams();
+  const [videoId, setVideoId] = useState(id);
   const [url, setUrl] = useState("http://");
   const [videoName, setVideoName] = useState("video name");
   // const [transcript, setTranscript] = useState("");
@@ -22,18 +22,21 @@ export const VideoPage = () => {
   });
 
   useEffect(() => {
-    const backend = `https://seashell-app-4jicj.ondigitalocean.app/api`;
+    setIsLoading(false);
+    // const backend = `https://seashell-app-4jicj.ondigitalocean.app/api`;
+    const backend = `https://hngx-chrome-extension-api.onrender.com/api`;
+
     const getVideo = async () => {
-      setIsLoading(true);
+      // setIsLoading(true);
       try {
-        const response = await fetch(
-          `${backend}/video/get/${"xO0RYPIb_1696274940211"}`
-        );
+        const response = await fetch(`${backend}/video/${videoId}`);
         const data = await response.json();
         setVideoName(data.data.id);
         setUrl(data.data.videoPath);
         setIsLoading(false);
+        console.log(data);
       } catch (error) {
+        console.log(error);
         setError({
           state: true,
           message: error,
@@ -42,7 +45,7 @@ export const VideoPage = () => {
       }
     };
 
-    getVideo();
+    // getVideo();
   }, []);
 
   const copy = (e) => {

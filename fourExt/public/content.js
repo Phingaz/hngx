@@ -1,5 +1,3 @@
-const backend = `https://seashell-app-4jicj.ondigitalocean.app/api`;
-
 function generateRandomIdWithTimestamp(length = 8) {
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -29,8 +27,11 @@ async function startRecorder(audio, currentTab) {
 }
 
 async function onAccessApproved(stream) {
+  // const backend = `https://seashell-app-4jicj.ondigitalocean.app/api`;
+  const backend = `https://hngx-chrome-extension-api.onrender.com/api`;
+  // const reroute = `https://hngxfour1.netlify.app/video`
+  const reroute = `http://localhost:5173/video`;
   const videoId = generateRandomIdWithTimestamp();
-  console.log(videoId);
   var recorder = null;
 
   const mimeType = MediaRecorder.isTypeSupported("video/webm;codecs=vp9")
@@ -47,7 +48,7 @@ async function onAccessApproved(stream) {
     chunks.push(e.data);
     blob = new Blob(chunks, { type: mimeType });
     if (chunks.length > 0) {
-      await sendChunksToServer(blob, videoId);
+      await sendChunksToServer(blob, videoId, backend);
     }
   };
 
@@ -58,12 +59,12 @@ async function onAccessApproved(stream) {
       }
     });
     try {
-      const data = await fetch(`${backend}/stream/end/${videoId}`);
-      const response = await data.json();
-      window.open(
-        `https://hngxfour1.netlify.app/video?id=${videoId}`,
-        "_blank"
+      const data = await fetch(
+        `${backend}/video/stream/end/${videoId}?videoTitle=${videoId}`
       );
+      const response = await data.json();
+      const id = response.data._id;
+      window.open(`${reroute}/${id}`, "_blank");
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +73,7 @@ async function onAccessApproved(stream) {
   return recorder;
 }
 
-const sendChunksToServer = async (blob, videoId) => {
+const sendChunksToServer = async (blob, videoId, backend) => {
   if (blob) {
     const formData = new FormData();
     const videoBlob = blob;
